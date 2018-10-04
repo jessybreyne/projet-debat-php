@@ -9,23 +9,37 @@ try {
 
   // Récupérer l'ID d'un User dont on connaît le pseudo
   function getIdUser($pseudo){
-    $idU = $fileDB->query('SELECT * from UTILISATEUR where pseudo='.$pseudo);
-    foreach ($idU as $res) { // On fait une boucle mais il n'y a qu'une seule ligne
-      return $res;
-    }
+    $infoU = $fileDB->query('SELECT * from UTILISATEUR where pseudo=:pseudo');
+    $stmt = $fileDB->prepare($infoU);
+    $stmt->bindParam(':pseudo',$pseudo);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC)['idUser']; // Retourne idUser de la première ligne
   }
 
   // Récupérer une Array contenant toutes les infos d'un User dont on connaît l'ID
   function getInfosUser($idU){
-    $user = $fileDB->query('SELECT * from UTILISATEUR where idUser='.$idU);
-    foreach ($user as $res) { // On fait une boucle mais il n'y a qu'une seule ligne
-      return $res;
-    }
+    $user = $fileDB->query('SELECT * from UTILISATEUR where idUser=:idUser';
+    $stmt = $fileDB->prepare($user);
+    $stmt->bindParam(':idUser',$idU);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne la première ligne
+  }
+
+  // Récupérer une Array contenant toutes les infos d'un Debat dont on connaît l'ID
+  function getInfosUser($idDeb){
+    $debat = $fileDB->query('SELECT * from DEBAT where idDebat=:idDebat';
+    $stmt = $fileDB->prepare($debat);
+    $stmt->bindParam(':idDebat',$idDeb);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne la première ligne
   }
 
   // Savoir si un pseudo est déjà utilisé (utile quand on ajoute un nouvel User)
   function pseudoExiste($pseudo){
-    $idU = $fileDB->query('SELECT * from UTILISATEUR where pseudo='.$pseudo);
+    $idU = $fileDB->query('SELECT idUser from UTILISATEUR where pseudo=:pseudo');
+    $stmt = $fileDB->prepare($idU);
+    $stmt->bindParam(':pseudo',$pseudo);
+    $stmt->execute();
     return count($idU) > 0;
   }
 
@@ -36,7 +50,7 @@ try {
 
   // Créer un utilisateur (non admin)
   function newUser($pseudo,$mdpBrut){
-    $insert="INSERT INTO contacts (pseudo, mdpHash, estAdmin) VALUES (:pseudo, :mdpHash , :estAdmin)";
+    $insert="INSERT INTO UTILISATEUR (pseudo, mdpHash, estAdmin) VALUES (:pseudo, :mdpHash , :estAdmin)";
     $stmt = $fileDB->prepare($insert);
     $stmt->bindParam(':pseudo',$pseudo);
     $stmt->bindParam(':mdpHash',hashMDP($mdpBrut));
@@ -44,8 +58,33 @@ try {
     $stmt->execute();
   }
 
+  // Initier un débat
+  // par un utilisateur dont on connait le pseudo
+  // dans une catégorie dont on connait le nom
+  function newDebat($pseudo,$nomCateg,$titreDeb){
+    $insert="INSERT INTO DEBAT (idUser,nomCateg,titre) VALUES (:idUser, :nomCateg, :titre)";
+    $stmt = $fileDB->prepare($insert);
+    $stmt->bindParam(':idUser',getIdUser($pseudo));
+    $stmt->bindParam(':nomCateg',$nomCateg);
+    $stmt->bindParam(':titre',$titreDeb);
+    $stmt->execute();
+  }
+
+  // Connaître le nombre de messages dans un débat (dont on connait l'ID)
+  function nbMessages($debatID){
+    $nbMess =
+  }
+
+  // Ajouter un message au débat
+  // par un utilisateur dont on connaît le nom
+  // dans un débat dont on connaît l'ID
+  function newMessage($pseudo,$debatID,$message){
+    // On commence par calculer le numMess
+
+  }
+
   // Fermeture de la connexion
-  $fileDB=null;
+  // $fileDB=null;
 
 } catch (\Exception $e) {
   echo "ERREUR : ".$e->getMessage();

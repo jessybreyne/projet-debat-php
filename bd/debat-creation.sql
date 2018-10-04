@@ -16,17 +16,16 @@ create table UTILISATEUR(
 );
 
 create table CATEGORIE(
-  idCateg NUMBER GENERATED ALWAYS AS IDENTITY primary key,
-  nomCateg VarChar2(15)
+  nomCateg VarChar2(15) UNIQUE
 );
 
 create table DEBAT(
   idDebat NUMBER GENERATED ALWAYS AS IDENTITY primary key,
   idUser number,
-  idCateg number,
+  nomCateg VarChar2(15) UNIQUE,
   titre Varchar2(100),
   foreign key (idUser) references UTILISATEUR(idUser),
-  foreign key (idCateg) references CATEGORIE(idCateg)
+  foreign key (nomCateg) references CATEGORIE(nomCateg)
 );
 
 create table MESSAGE(
