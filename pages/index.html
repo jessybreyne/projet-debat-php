@@ -18,13 +18,35 @@
           <h3 class="masthead-brand">Debat</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="#">Accueil</a>
-            <a class="nav-link" href="connexion.html">Connexion</a>
+            <a class="nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Connexion</a>
             <a class="nav-link" href="#">Inscription</a>
           </nav>
+          
         </div>
+        
       </header>
+     
 
       <main role="main" class="inner cover">
+          <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                <h2>Connexion</h2>
+                <form class="form-signin">
+                    <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+                    <label for="inputPseudo" class="sr-only">Pseudo</label>
+                    <input type="text" id="inputPseudo" class="form-control" placeholder="Pseudo" required autofocus>
+                    <label for="inputPassword" class="sr-only">Mot de passe</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                    <div class="checkbox mb-3">
+                      <label>
+                        <input type="checkbox" value="remember-me"> Se souvenir de moi
+                      </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+                  </form>
+              </div>
+            </div>
         <h1 class="cover-heading">Bienvenue sur Debat.</h1>
         <p class="lead">Debat est une plateforme collaborative de debat en ligne.</p>
         <p class="lead">
@@ -41,6 +63,6 @@
     <!-- bootstrap javascript -->
     <script src="../dist/js/jquery-3.2.1.slim.min.js"></script>
     <script src="../dist/js/popper.min.js"></script>
-    <script src="../dsit/js/bootstrap.min.js"></script>
+    <script src="../dist/js/bootstrap.min.js"></script>
   </body>
 </html>
