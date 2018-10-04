@@ -16,6 +16,15 @@ try {
     return $stmt->fetch(PDO::FETCH_ASSOC)['idUser']; // Retourne idUser de la première ligne
   }
 
+  // Récupérer l'ID d'un Débat dont on connaît le titre
+  function getDebatID($titre){
+    $infoDeb = $fileDB->query('SELECT * from UTILISATEUR where titre=:titre');
+    $stmt = $fileDB->prepare($infoDeb);
+    $stmt->bindParam(':titre',$titre);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC)['idDebat']; // Retourne idDebat de la première ligne
+  }
+
   // Récupérer une Array contenant toutes les infos d'un User dont on connaît l'ID
   function getInfosUser($idU){
     $user = $fileDB->query('SELECT * from UTILISATEUR where idUser=:idUser';
@@ -26,7 +35,7 @@ try {
   }
 
   // Récupérer une Array contenant toutes les infos d'un Debat dont on connaît l'ID
-  function getInfosUser($idDeb){
+  function getInfosDebat($idDeb){
     $debat = $fileDB->query('SELECT * from DEBAT where idDebat=:idDebat';
     $stmt = $fileDB->prepare($debat);
     $stmt->bindParam(':idDebat',$idDeb);
@@ -60,10 +69,53 @@ try {
 
   // Ajouter un suivi entre un User (dont on connaît le pseudo)
   // et un Débat (dont on connaît l'ID)
-  function newSuivi($pseudo,$debatID){
+  function newSuivi($pseudo,$titreDeb){
     $insert="INSERT INTO SUIVRE VALUES (:idDebat, :idUser)";
     $stmt = $fileDB->prepare($insert);
-    $stmt->bindParam(':idDebat',$debatID);
+    $stmt->bindParam(':idDebat',getDebatID($titreDeb));
+    $stmt->bindParam(':idUser',getUserID($pseudo));
+    $stmt->execute();
+  }
+
+  // Connaître le nombre de messages dans un débat (dont on connait l'ID)
+  function nbMessages($titreDeb){
+    $lesMess = $fileDB->query('SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat');
+    $stmt = $fileDB->prepare($lesMess);
+    $stmt->bindParam(':idDebat',getDebatID($titreDeb));
+    $stmt->execute();
+    return count($lesMess);
+  }
+
+  // Ajouter un message au débat
+  // par un utilisateur dont on connaît le nom
+  // dans un débat dont on connaît l'ID
+  function newMessage($pseudo,$titreDeb,$message){
+    // On commence par calculer le numMess
+    $numMess = nbMessages($titreDeb) + 1;
+    $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idUser, :contenu)";
+    $stmt = $fileDB->prepare($insert);
+    $stmt->bindParam(':idDebat',getDebatID($titreDeb));
+    $stmt->bindParam(':numMess',$numMess);
+    $stmt->bindParam(':idUser',getUserID($pseudo));
+    $stmt->bindParam(':contenu',$message);
+    $stmt->execute();
+  }
+
+  // Récupérer la liste des messages d'un débat dont on connaît l'ID (dans l'ordre)
+  function listeMessages($titreDeb){
+    $lesMess = $fileDB->query('SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat order by numMess');
+    $stmt = $fileDB->prepare($lesMess);
+    $stmt->bindParam(':idDebat',getDebatID($titreDeb));
+    $stmt->execute();
+    return $lesMess;
+  }
+
+  // Ajouter un suivi entre un User (dont on connaît le pseudo)
+  // et un Débat (dont on connaît le titre)
+  function newSuivi($pseudo,$titreDeb){
+    $insert="INSERT INTO SUIVRE VALUES (:idDebat, :idUser)";
+    $stmt = $fileDB->prepare($insert);
+    $stmt->bindParam(':idDebat',getDebatID($titreDeb));
     $stmt->bindParam(':idUser',getUserID($pseudo));
     $stmt->execute();
   }
@@ -78,55 +130,13 @@ try {
     $stmt->bindParam(':nomCateg',$nomCateg);
     $stmt->bindParam(':titre',$titreDeb);
     $stmt->execute();
-    // newSuivi($pseudo,)
-  }
-
-  // Connaître le nombre de messages dans un débat (dont on connait l'ID)
-  function nbMessages($debatID){
-    $lesMess = $fileDB->query('SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat');
-    $stmt = $fileDB->prepare($lesMess);
-    $stmt->bindParam(':idDebat',$debatID);
-    $stmt->execute();
-    return count($lesMess);
-  }
-
-  // Ajouter un message au débat
-  // par un utilisateur dont on connaît le nom
-  // dans un débat dont on connaît l'ID
-  function newMessage($pseudo,$debatID,$message){
-    // On commence par calculer le numMess
-    $numMess = nbMessages($debatID) + 1;
-    $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idUser, :contenu)";
-    $stmt = $fileDB->prepare($insert);
-    $stmt->bindParam(':idDebat',$debatID);
-    $stmt->bindParam(':numMess',$numMess);
-    $stmt->bindParam(':idUser',getUserID($pseudo));
-    $stmt->bindParam(':contenu',$message);
-    $stmt->execute();
-  }
-
-  // Récupérer la liste des messages d'un débat dont on connaît l'ID (dans l'ordre)
-  function listeMessages($debatID){
-    $lesMess = $fileDB->query('SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat order by numMess');
-    $stmt = $fileDB->prepare($lesMess);
-    $stmt->bindParam(':idDebat',$debatID);
-    $stmt->execute();
-    return $lesMess;
-  }
-
-  // Ajouter un suivi entre un User (dont on connaît le pseudo)
-  // et un Débat (dont on connaît l'ID)
-  function newSuivi($pseudo,$debatID){
-    $insert="INSERT INTO SUIVRE VALUES (:idDebat, :idUser)";
-    $stmt = $fileDB->prepare($insert);
-    $stmt->bindParam(':idDebat',$debatID);
-    $stmt->bindParam(':idUser',getUserID($pseudo));
-    $stmt->execute();
+    newSuivi($pseudo,$titreDeb);
   }
 
   // Récupérer les données pour la page "Mes débats" (catégorie, titre, auteur)
   // concernant un User dont on connaît le pseudo
   // (les débats qu'il a créés ou qu'il suit)
+
 
 
   // Fermeture de la connexion
