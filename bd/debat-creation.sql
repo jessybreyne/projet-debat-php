@@ -9,33 +9,32 @@ drop table UTILISATEUR;
 -- TABLES
 
 create table UTILISATEUR(
-  idUser number(3) auto_increment not null,
-  pseudo VarChar2(15),
+  idUser NUMBER GENERATED ALWAYS AS IDENTITY primary key,
+  pseudo VarChar2(15) unique,
   mdpHash VarChar2(50),
-  estAdmin boolean,
-  constraint Kuser primary key (idUser)
+  estAdmin smallint -- 0 : non admin, 1 : est admin
 );
 
 create table CATEGORIE(
-  idCateg number(3) auto_increment primary key,
+  idCateg NUMBER GENERATED ALWAYS AS IDENTITY primary key,
   nomCateg VarChar2(15)
 );
 
 create table DEBAT(
-  idDebat number(4) auto_increment primary key,
-  idCreateur number(4),
-  idCateg number(3),
-  titre Varchar(100)
-  constraint FKuser foreign key idCreateur references UTILISATEUR(idUser),
-  constraint FKcateg foreign key idCateg references CATEGORIE(idCateg)
+  idDebat NUMBER GENERATED ALWAYS AS IDENTITY primary key,
+  idUser number,
+  idCateg number,
+  titre Varchar2(100),
+  foreign key (idUser) references UTILISATEUR(idUser),
+  foreign key (idCateg) references CATEGORIE(idCateg)
 );
 
 create table MESSAGE(
-  idDebat number(4),
-  numMess number(4),
-  idAuteur number(4),
-  contenu VarChar2(5000),
-  constraint FKuser foreign key idAuteur references UTILISATEUR(idUser),
-  constraint FKdebat foreign key idDebat references DEBAT(idDebat),
-  constraint Kmessage primary key (idDebat,numMess)
+  idDebat number,
+  numMess number,
+  idUser number,
+  contenu VarChar2(4000),
+  foreign key (idUser) references UTILISATEUR(idUser),
+  foreign key (idDebat) references DEBAT(idDebat),
+  primary key (idDebat,numMess)
 );
