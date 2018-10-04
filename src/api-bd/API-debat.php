@@ -72,7 +72,11 @@ try {
 
   // Connaître le nombre de messages dans un débat (dont on connait l'ID)
   function nbMessages($debatID){
-    $nbMess =
+    $lesMess = $fileDB->query('SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat');
+    $stmt = $fileDB->prepare($lesMess);
+    $stmt->bindParam(':idDebat',$debatID);
+    $stmt->execute();
+    return count($lesMess);
   }
 
   // Ajouter un message au débat
@@ -80,7 +84,13 @@ try {
   // dans un débat dont on connaît l'ID
   function newMessage($pseudo,$debatID,$message){
     // On commence par calculer le numMess
-
+    $numMess = nbMessages($debatID) + 1;
+    $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idUser, :contenu)";
+    $stmt = $fileDB->prepare($insert);
+    $stmt->bindParam(':idDebat',$debatID);
+    $stmt->bindParam(':numMess',$numMess);
+    $stmt->bindParam(':contenu',$message);
+    $stmt->execute();
   }
 
   // Fermeture de la connexion
