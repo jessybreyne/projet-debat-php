@@ -37,3 +37,11 @@ create table MESSAGE(
   foreign key (idDebat) references DEBAT(idDebat),
   primary key (idDebat,numMess)
 );
+
+create table SUIVRE(
+  idDebat number,
+  idUser number,
+  foreign key (idDebat) references DEBAT(idDebat),
+  foreign key (idUser) references UTILISATEUR(idUser),
+  primary key (idDebat,idUser)
+);
