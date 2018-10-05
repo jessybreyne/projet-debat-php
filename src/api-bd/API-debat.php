@@ -136,8 +136,13 @@ try {
   // Récupérer les données pour la page "Mes débats" (catégorie, titre, auteur)
   // concernant un User dont on connaît le pseudo
   // (les débats qu'il a créés ou qu'il suit)
-
-
+  function listeDebats($pseudo){
+    $lesDeb = $fileDB->query('SELECT nomCateg,titre,idUser from CATEGORIE natural join DEBAT natural join SUIVRE and idUser=:idUser');
+    $stmt = $fileDB->prepare($lesDeb);
+    $stmt->bindParam(':idUser',getUserID($pseudo));
+    $stmt->execute();
+    return $lesDeb;
+  }
 
   // Fermeture de la connexion
   // $fileDB=null;

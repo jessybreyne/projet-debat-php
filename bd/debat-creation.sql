@@ -16,7 +16,7 @@ create table UTILISATEUR(
 );
 
 create table CATEGORIE(
-  nomCateg VarChar2(15) UNIQUE
+  nomCateg VarChar2(15) primary key
 );
 
 create table DEBAT(
@@ -33,6 +33,7 @@ create table MESSAGE(
   numMess number,
   idUser number,
   contenu VarChar2(4000),
+  datePub time,
   foreign key (idUser) references UTILISATEUR(idUser),
   foreign key (idDebat) references DEBAT(idDebat),
   primary key (idDebat,numMess)
