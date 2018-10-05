@@ -6,3 +6,9 @@
 .nav-img-active {
   width: 20px;
 }
+
+@media only screen and (max-width:575px) {
+	.bug {
+		margin-top: 8px;
+	}
+}

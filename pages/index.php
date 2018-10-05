@@ -20,10 +20,11 @@
 
   <header class="navbar-expand navbar-dark header">
     <div class="row logo-centered" style="padding-top: 15px;">
-      <div style="margin: 0 auto; display: flex;">
-        <div class="logo"><a class="navbar-brand" href="#"><h1>Bienvenue sur </h1></a></div>
+      <div class="logo">
+        <h1>
+        <div class="logo"><a class="navbar-brand" href="#">Bienvenue sur </a></div>
         <div class="logo"><img src="../img/Debat-Logo-creme.png" class="logo-img"></div>
-      </div>
+      </h1></div>
     </div>
     <div class="row logo-centered">
 
@@ -38,9 +39,9 @@
   
 
   <main role="main" class="container espacement-main">
-    <div class="row">
+    <div class="row block">
 
-      <h3 style="color: white;">Nouvel arrivant? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous!</a></h3>
+      <h3 style="color: white;">Nouvel arrivant ? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous !</a></h3>
 
 
 
@@ -86,7 +87,7 @@
         </form>
       </div>
     </div>
-    <div class="row">
+    <div class="row hauteur">
       <div class="col-12 col-md-4">
         <div class="card">
           <div class="card-body">
@@ -94,12 +95,11 @@
             <form>
               <div class="form-group">
                 <label for="exampleInputEmail1">Pseudo</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le pseudo">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le pseudo">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Mot de passe</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="azerty123@$">
               </div>
               <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -112,7 +112,7 @@
         </div>
 
       </div>
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-8 block-mobile">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

@@ -8,16 +8,18 @@
 }
 
 .header {
-	height: 170px;
+	height: 220px;
 	background-color: #343a40 !important;
 }
 
 .logo-img {
-	width: 230px;
+	width: 330px;
 }
 
 .logo {
 	padding: 0px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .logo-centered {
@@ -27,3 +29,26 @@
 .espacement-main {
 	margin-top: 30px;
 }
+
+.card {
+	background-color: #dbdbdb;
+}
+
+.block {
+	margin-bottom: 20px;
+}
+
+@media only screen and (max-width:767px) {
+	.block-mobile {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.logo-img {
+		width: 200px;
+	}
+}
+
+.hauteur {
+	margin-bottom: 30px;
+}
+
