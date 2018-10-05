@@ -31,12 +31,12 @@
       <div style="margin: 0 auto; color: #e1e1e1;"><h3>Plateforme de débat collaborative</h3>
       </div>
     </div>
-    
 
-    
+
+
   </header>
 
-  
+
 
   <main role="main" class="container espacement-main">
     <div class="row block">
@@ -49,27 +49,26 @@
     <div class="collapse row" id="collapseInscription" style="margin-bottom: 30px;">
       <div class="card card-body">
         <h2>Inscription</h2>
-        <form>
+        <form action="inscription.php" method="post">
           <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Pseudo</label>
+            <label for="pseudoIns" class="col-sm-2 col-form-label">Pseudo</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Pseudo">
+              <input name="pseudo" type="text" class="form-control" id="pseudoIns" placeholder="Pseudo">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Mot de passe</label>
+            <label for="pwdIns1" class="col-sm-2 col-form-label">Mot de passe</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword3" placeholder="Mot de passe">
+              <input name="pwd1" type="password" class="form-control" id="pwdIns1" placeholder="Mot de passe">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Confirmer le mot de passe</label>
+            <label name="pwd2" for="pwdIns2" class="col-sm-2 col-form-label">Confirmer le mot de passe</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword3" placeholder="Mot de passe">
+              <input type="password" class="form-control" id="pwdIns2" placeholder="Mot de passe">
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-2">Checkbox</div>
             <div class="col-sm-10">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck1">
@@ -81,7 +80,7 @@
           </div>
           <div class="form-group row">
             <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary">S'inscrire</button>
+              <button type="submit" class="btn btn-primary">Inscription</button>
             </div>
           </div>
         </form>
