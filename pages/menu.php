@@ -6,15 +6,37 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <img  class="nav-img-active" src="../img/round_home_white_48dp.png">
-            Accueil <span class="sr-only">(current)</span>
+        <li class="nav-item <?php 
+            $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+if($name=="pagecategorie" or $name=="accueil"){
+    echo "active";
+}
+?>">
+          <a class="nav-link" href="accueil.php">
+              
+            <img  class="nav-img<?php 
+            $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+if($name=="pagecategorie" or $name=="accueil"){
+    echo "-active";
+}
+?>
+" src="../img/round_home_white_48dp.png">
+            Accueil
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <img class="nav-img" src="../img/round_question_answer_white_48dp.png">
+        <li class="nav-item <?php 
+            $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+if($name=="mesdebats"){
+    echo "active";
+}
+?>">
+          <a class="nav-link" href="mesdebats.php">
+            <img class="nav-img<?php 
+            $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+if($name=="mesdebats"){
+    echo "-active";
+}
+?>" src="../img/round_question_answer_white_48dp.png">
             Mes débats
           </a>
         </li>
@@ -38,7 +60,12 @@
           </div>
         </div>
       </form>
-
-      <a class="btn btn-primary my-2 my-sm-0" href="#" role="button">Nouveau débat</a>
+      <?php 
+            $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+if($name!="nouveaudebat"){
+    echo '<a class="btn btn-primary my-2 my-sm-0" href="nouveaudebat.php" role="button">Nouveau débat</a>';
+}
+?>
+      
     </div>
   </nav>
