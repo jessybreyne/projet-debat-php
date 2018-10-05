@@ -13,34 +13,37 @@
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../css/categorie.css" rel="stylesheet">
+  <link href="../css/accueil.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body class="bg-dark">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><img src="../img/Debat-Logo-creme.png" style="width: 80px;"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExample04">
-      <ul class="navbar-nav mr-auto">
-      </ul>
-      <a class="btn btn-primary my-2 my-sm-0" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">S'inscrire</a>
+  <header class="navbar-expand navbar-dark header">
+    <div class="row logo-centered" style="padding-top: 15px;">
+      <div style="margin: 0 auto; display: flex;">
+        <div class="logo"><a class="navbar-brand" href="#"><h1>Bienvenue sur </h1></a></div>
+        <div class="logo"><img src="../img/Debat-Logo-creme.png" class="logo-img"></div>
+      </div>
     </div>
-  </nav>
+    <div class="row logo-centered">
+
+      <div style="margin: 0 auto; color: #e1e1e1;"><h3>Plateforme de débat collaborative</h3>
+      </div>
+    </div>
+    
+
+    
+  </header>
 
   
 
-  <main role="main" class="container" style="margin-top: 30px;">
+  <main role="main" class="container espacement-main">
     <div class="row">
-      <div class="col alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Bienvenue!</strong> <hr>Débat est une des meilleures plateforme de débat. <a data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous dès maintenant en cliquant ici!</a>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+
+      <h3 style="color: white;">Nouvel arrivant? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous!</a></h3>
+
+
+
     </div>
     <div class="collapse row" id="collapseInscription" style="margin-bottom: 30px;">
       <div class="card card-body">
@@ -84,24 +87,30 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 col-md-4">
-        <h2>Se connecter</h2>
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Pseudo</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le pseudo">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h2>Se connecter</h2>
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Pseudo</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le pseudo">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Mot de passe</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Rester connecté</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Connexion</button>
+            </form>
+
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Mot de passe</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Rester connecté</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Connexion</button>
-        </form>
+        </div>
+
       </div>
       <div class="col-12 col-md-8">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
