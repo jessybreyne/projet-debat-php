@@ -23,7 +23,7 @@ create table DEBAT(
   idDebat NUMBER GENERATED ALWAYS AS IDENTITY primary key,
   idUser number,
   nomCateg VarChar2(15) UNIQUE,
-  titre Varchar2(100),
+  titre Varchar2(100) UNIQUE,
   foreign key (idUser) references UTILISATEUR(idUser),
   foreign key (nomCateg) references CATEGORIE(nomCateg)
 );
