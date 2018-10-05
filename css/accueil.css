@@ -1,0 +1,29 @@
+.nav-img {
+  filter: contrast(38%);
+  width: 20px;
+}
+
+.nav-img-active {
+  width: 20px;
+}
+
+.header {
+	height: 170px;
+	background-color: #343a40 !important;
+}
+
+.logo-img {
+	width: 230px;
+}
+
+.logo {
+	padding: 0px;
+}
+
+.logo-centered {
+	margin: 0 auto;
+}
+
+.espacement-main {
+	margin-top: 30px;
+}
