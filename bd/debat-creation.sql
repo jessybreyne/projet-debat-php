@@ -1,6 +1,7 @@
 
 -- DROP
 
+drop table SUIVRE;
 drop table MESSAGE;
 drop table DEBAT;
 drop table CATEGORIE;
@@ -21,20 +22,20 @@ create table CATEGORIE(
 
 create table DEBAT(
   idDebat NUMBER GENERATED ALWAYS AS IDENTITY primary key,
-  idUser number,
+  idCreateur number,
   nomCateg VarChar2(15) UNIQUE,
   titre Varchar2(100) UNIQUE,
-  foreign key (idUser) references UTILISATEUR(idUser),
+  foreign key (idCreateur) references UTILISATEUR(idUser),
   foreign key (nomCateg) references CATEGORIE(nomCateg)
 );
 
 create table MESSAGE(
   idDebat number,
   numMess number,
-  idUser number,
+  idAuteur number,
   contenu VarChar2(4000),
-  datePub time,
-  foreign key (idUser) references UTILISATEUR(idUser),
+  datePub date,
+  foreign key (idAuteur) references UTILISATEUR(idUser),
   foreign key (idDebat) references DEBAT(idDebat),
   primary key (idDebat,numMess)
 );
