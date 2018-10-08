@@ -43,10 +43,10 @@ if($name=="mesdebats"){
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img class="nav-img" src="../img/round_person_white_48dp.png">
-        Profil
+        Pseudo
       </a>
           <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Profil</a>
             <a class="dropdown-item" href="#">Préférences</a>
             <a class="dropdown-item" href="#">Se deconnecter</a>
           </div>

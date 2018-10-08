@@ -12,3 +12,11 @@
 		margin-top: 8px;
 	}
 }
+
+.bg-question {
+  background-color: #ffdfdf;
+}
+
+.bg-reponse {
+  background-color: #c7ffd2;
+}
