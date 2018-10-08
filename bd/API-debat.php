@@ -92,11 +92,11 @@ try {
   function newMessage($pseudo,$titreDeb,$message){
     // On commence par calculer le numMess
     $numMess = nbMessages($titreDeb) + 1;
-    $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idUser, :contenu)";
+    $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idAuteur, :contenu)";
     $stmt = $fileDB->prepare($insert);
     $stmt->bindParam(':idDebat',getDebatID($titreDeb));
     $stmt->bindParam(':numMess',$numMess);
-    $stmt->bindParam(':idUser',getUserID($pseudo));
+    $stmt->bindParam(':idAuteur',getUserID($pseudo));
     $stmt->bindParam(':contenu',$message);
     $stmt->execute();
   }
@@ -124,9 +124,9 @@ try {
   // par un utilisateur dont on connait le pseudo
   // dans une catégorie dont on connait le nom
   function newDebat($pseudo,$nomCateg,$titreDeb){
-    $insert="INSERT INTO DEBAT (idUser,nomCateg,titre) VALUES (:idUser, :nomCateg, :titre)";
+    $insert="INSERT INTO DEBAT (idCreateur,nomCateg,titre) VALUES (:idCreateur, :nomCateg, :titre)";
     $stmt = $fileDB->prepare($insert);
-    $stmt->bindParam(':idUser',getUserID($pseudo));
+    $stmt->bindParam(':idCreateur',getUserID($pseudo));
     $stmt->bindParam(':nomCateg',$nomCateg);
     $stmt->bindParam(':titre',$titreDeb);
     $stmt->execute();
