@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_SESSION["etatInscription"])){
+  echo $_SESSION["etatInscription"];
+}
+ ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -43,7 +51,15 @@
 
       <h3 style="color: white;">Nouvel arrivant ? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous !</a></h3>
 
-
+      <?php if (isset($_SESSION["etatInscription"])) { ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Inscription refusée</strong> <br>
+        <?php echo $_SESSION["etatInscription"]; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php } ?>
 
     </div>
     <div class="collapse row" id="collapseInscription" style="margin-bottom: 30px;">
@@ -53,19 +69,19 @@
           <div class="form-group row">
             <label for="pseudoIns" class="col-sm-2 col-form-label">Pseudo</label>
             <div class="col-sm-10">
-              <input name="pseudo" type="text" class="form-control" id="pseudoIns" placeholder="Pseudo">
+              <input name="pseudo" type="text" class="form-control" id="pseudoIns" placeholder="Pseudo" pattern="[A-Za-z][A-Za-z0-9]{2,14}" title="Entre 3 et 15 caractères. Chiffres autorisés. Commencer par une lettre." required>
             </div>
           </div>
           <div class="form-group row">
             <label for="pwdIns1" class="col-sm-2 col-form-label">Mot de passe</label>
             <div class="col-sm-10">
-              <input name="pwd1" type="password" class="form-control" id="pwdIns1" placeholder="Mot de passe">
+              <input name="pwd1" type="password" class="form-control" id="pwdIns1" placeholder="Mot de passe" required>
             </div>
           </div>
           <div class="form-group row">
-            <label name="pwd2" for="pwdIns2" class="col-sm-2 col-form-label">Confirmer le mot de passe</label>
+            <label for="pwdIns2" class="col-sm-2 col-form-label">Confirmer le mot de passe</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="pwdIns2" placeholder="Mot de passe">
+              <input name="pwd2" type="password" class="form-control" id="pwdIns2" placeholder="Mot de passe" required>
             </div>
           </div>
           <div class="form-group row">

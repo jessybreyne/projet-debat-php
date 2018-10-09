@@ -3,8 +3,10 @@
 <?php
 
 try {
+  require_once("data/mdp.php");
 
-  $fileDB=new PDO('mysql:host=localhost;dbname=DBmerillon');
+  date_default_timezone_set('Europe/Paris');
+  $fileDB=new PDO('mysql:host=servinfo-db;dbname=dbmerillon;charset=utf8', 'merillon', mdp());
   $fileDB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
 
   // Récupérer l'ID d'un User dont on connaît le pseudo
@@ -27,7 +29,7 @@ try {
 
   // Récupérer une Array contenant toutes les infos d'un User dont on connaît l'ID
   function getInfosUser($idU){
-    $user = $fileDB->query('SELECT * from UTILISATEUR where idUser=:idUser';
+    $user = $fileDB->query('SELECT * from UTILISATEUR where idUser=:idUser');
     $stmt = $fileDB->prepare($user);
     $stmt->bindParam(':idUser',$idU);
     $stmt->execute();
@@ -36,7 +38,7 @@ try {
 
   // Récupérer une Array contenant toutes les infos d'un Debat dont on connaît l'ID
   function getInfosDebat($idDeb){
-    $debat = $fileDB->query('SELECT * from DEBAT where idDebat=:idDebat';
+    $debat = $fileDB->query('SELECT * from DEBAT where idDebat=:idDebat');
     $stmt = $fileDB->prepare($debat);
     $stmt->bindParam(':idDebat',$idDeb);
     $stmt->execute();
@@ -57,23 +59,20 @@ try {
     return hash('sha2560',$mdpBrut);
   }
 
+  // Obtenir un nouveau userId libre
+  function newIDuser(){
+    $idU = $fileDB->query('SELECT max(idUser) as newID from UTILISATEUR');
+    return $idu->fetch()['newID'];
+  }
+
   // Créer un utilisateur (non admin)
   function newUser($pseudo,$mdpBrut){
-    $insert="INSERT INTO UTILISATEUR (pseudo, mdpHash, estAdmin) VALUES (:pseudo, :mdpHash , :estAdmin)";
+    $insert="INSERT INTO UTILISATEUR VALUES (:idUser, :pseudo, :mdpHash , :estAdmin)";
     $stmt = $fileDB->prepare($insert);
+    $stmt->bindParam(':idUser',newIDuser());
     $stmt->bindParam(':pseudo',$pseudo);
     $stmt->bindParam(':mdpHash',hashMDP($mdpBrut));
     $stmt->bindParam(':estAdmin',0);
-    $stmt->execute();
-  }
-
-  // Ajouter un suivi entre un User (dont on connaît le pseudo)
-  // et un Débat (dont on connaît l'ID)
-  function newSuivi($pseudo,$titreDeb){
-    $insert="INSERT INTO SUIVRE VALUES (:idDebat, :idUser)";
-    $stmt = $fileDB->prepare($insert);
-    $stmt->bindParam(':idDebat',getDebatID($titreDeb));
-    $stmt->bindParam(':idUser',getUserID($pseudo));
     $stmt->execute();
   }
 
