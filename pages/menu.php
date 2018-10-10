@@ -63,7 +63,7 @@ if($name=="mesdebats"){
       <?php
             $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
 if($name!="nouveaudebat"){
-    echo '<a class="btn btn-primary my-2 my-sm-0" href="nouveaudebat.php" role="button">Nouveau débat</a>';
+  echo '<a class="btn btn-primary my-2 my-sm-0" href="nouveaudebat.php" role="button">Nouveau débat</a>';
 }
 ?>
 

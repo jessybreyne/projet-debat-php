@@ -24,130 +24,80 @@
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="#">Revenir aux catégories</a>
+      <a class="nav-link" href="accueil.php">Revenir à l'accueil</a>
       <a class="nav-link" href="#">Règlement</a>
-      <a class="nav-link" data-toggle="collapse" href="#collapseTri" role="button" aria-expanded="false" aria-controls="collapseTri">Paramétrage du tri</a>
     </nav>
-    <div class="collapse" id="collapseTri">
-      <div class="card card-body">
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par nombre de message dans les débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par nombre de message dans les débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par date des débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-      </div>
-    </div>
   </div>
 
   <main role="main" class="container">
     <div class="row">
-    <div class="col-12 col-md-4">
-      
-    <div class="my-3 p-3 bg-reponse rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Ecrire une réponse</h6>
-      <form>
-  <div class="form-group">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <div class="col">
+        <div class="my-3 p-3 bg-reponse rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Ecriture du débat</h6>
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Saisissez le titre">
+            </div>
+            <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="form-group">
+                <label for="exampleFormControlTextera1">Ecriture du débat</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="height:290px;" placeholder="Expliquez le sujet, le problème, ouvrez le débat..."></textarea>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+            <div class="form-group">
+    <label for="exampleFormControlSelect1">Catégorie</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>Politique</option>
+      <option>Societe</option>
+      <option>Philosophie</option>
+      <option>Economie</option>
+      <option>Education</option>
+    </select>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-    </div>
-
-    </div>
-    <div class="col-12 col-md-8">
-    <div class="my-3 p-3 bg-question rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Titre du débat</h6>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Auteur: Pseudo | 3 réponses</strong>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-        </p>
+  <legend class="col-form-label">Paramètres</legend>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">
+      Notification à chaque nouvelle activité
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+    <label class="form-check-label" for="defaultCheck2">
+      Notification à chaque nouveau suivi
+    </label>
+  </div>
+  <legend class="col-form-label">Statut du débat</legend>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+    <label class="form-check-label" for="gridRadios1">
+    Public
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+    <label class="form-check-label" for="gridRadios2">
+    Privé (vous pourez changer ce choix)
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+    <label class="form-check-label" for="gridRadios3">
+    Masqué
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publier</button>
+            </div>
+            
+            </div>
+            
+          </form>
+        </div>
       </div>
     </div>
-    <h3>Les réponses:</h3>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Auteur: Pseudo</strong>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-        </p>
-      </div>
-    </div>
-
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Auteur: Pseudo</strong>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-        </p>
-      </div>
-      </div>
-      </div>
-    </div>
-
-
-</main>
+  </main>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->
