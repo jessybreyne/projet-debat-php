@@ -24,49 +24,17 @@
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="#">Revenir aux catégories</a>
+      <a class="nav-link" href="accueil.php">Revenir à l'accueil</a>
       <a class="nav-link" href="#">Règlement</a>
-      <a class="nav-link" data-toggle="collapse" href="#collapseTri" role="button" aria-expanded="false" aria-controls="collapseTri">Paramétrage du tri</a>
     </nav>
-    <div class="collapse" id="collapseTri">
-      <div class="card card-body">
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par nombre de message dans les débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par nombre de message dans les débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par date des débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-      </div>
-    </div>
   </div>
 
   <main role="main" class="container">
     <div class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-8">
       
     <div class="my-3 p-3 bg-reponse rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Ecrire une réponse</h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0">Ecriture du débat</h6>
       <form>
   <div class="form-group">
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -76,7 +44,7 @@
     </div>
 
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-4">
     <div class="my-3 p-3 bg-question rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Titre du débat</h6>
       <div class="media text-muted pt-3">
@@ -92,11 +60,7 @@
           Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
           Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
           Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. 
-        </p>
+      </p>
       </div>
     </div>
     <h3>Les réponses:</h3>
