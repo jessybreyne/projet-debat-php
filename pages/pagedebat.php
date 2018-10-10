@@ -24,7 +24,7 @@
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="#">Revenir en arrière</a>
+      <a class="nav-link" href="accueil.php">Revenir en arrière</a>
       <a class="nav-link" href="#">Règlement</a>
     </nav>
   </div>
