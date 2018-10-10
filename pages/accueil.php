@@ -1,3 +1,7 @@
+<?php
+session_start();
+ ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -19,7 +23,7 @@
 <body class="bg-light">
 
   <?php
-  include 'menu.php';
+  require_once 'menu.php';
   ?>
 
   <div class="nav-scroller bg-white shadow-sm">
@@ -62,6 +66,16 @@
   </div>
 
   <main role="main" class="container">
+
+    <?php if (isset($_SESSION["SuccessInscription"])) { ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Inscription réussie</strong> <br>
+      <?php echo $_SESSION["SuccessInscription"]; ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <?php } ?>
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Liste des débats</h6>
