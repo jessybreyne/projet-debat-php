@@ -1,5 +1,10 @@
 <!-- API PHP pour l'application WEB de débat -->
 
+<!-- DEBUG :
+$stmt->debugDumpParams();
+die();
+-->
+
 <?php
 
 require_once("data/PDO.php");
@@ -58,15 +63,17 @@ function hashMDP($mdpBrut){
 function newIDuser($database){
   $idU = "SELECT max(idUser) as newID from UTILISATEUR";
   $stmt = $database->query($idU);
-  return $stmt->fetch()['newID'];
+  return $stmt->fetch()['newID']+1;
 }
 
 // Créer un utilisateur (non admin)
 function newUser($database,$pseudo,$mdpBrut){
   $insert="INSERT INTO UTILISATEUR VALUES (:idUser, :pseudo, :mdpHash , 0)";
   $stmt = $database->prepare($insert);
+
   $hash = hashMDP($mdpBrut);
   $user = newIDuser($database);
+
   $stmt->bindParam(':idUser',$user);
   $stmt->bindParam(':pseudo',$pseudo);
   $stmt->bindParam(':mdpHash',$hash);

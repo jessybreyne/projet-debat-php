@@ -1,5 +1,18 @@
 <?php
 if (!session_id()) @ session_start();
+if (isset($_SESSION["erreur"])) $_SESSION["erreur"] = null;
+
+if (isset($_SESSION["successIns"])){
+  $msgIns = $_SESSION["successIns"];
+  $_SESSION["successIns"] = null;
+}
+
+if (isset($_SESSION["successCo"])){
+  $msgCo = $_SESSION["successCo"];
+  $_SESSION["successCo"] = null;
+}
+
+if (!isset($_SESSION["pseudo"])) header('Location: index.php');
  ?>
 
 <!doctype html>
@@ -67,10 +80,22 @@ if (!session_id()) @ session_start();
 
   <main role="main" class="container">
 
-    <?php if (isset($_SESSION["SuccessInscription"])) { ?>
+    <!-- MESSAGE BIENVENUE APRÈS INSCRIPTION -->
+    <?php if (isset($msgIns)) { ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Inscription réussie</strong> <br>
-      <?php echo $_SESSION["SuccessInscription"]; ?>
+      <?php echo $msgIns; ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <?php } ?>
+
+    <!-- MESSAGE BIENVENUE APRÈS CONNEXION -->
+    <?php if (isset($msgCo)) { ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Connexion réussie</strong> <br>
+      <?php echo $msgCo; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

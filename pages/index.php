@@ -47,10 +47,10 @@ if (!session_id()) @ session_start();
 
       <h3 style="color: white;">Nouvel arrivant ? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous !</a></h3>
 
-      <?php if (isset($_SESSION["erreurInscription"])) { ?>
+      <?php if (isset($_SESSION["erreur"])) { ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Inscription refusée</strong> <br>
-        <?php echo $_SESSION["erreurInscription"]; ?>
+        <?php echo $_SESSION["erreur"]; ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -61,7 +61,7 @@ if (!session_id()) @ session_start();
     <div class="collapse row" id="collapseInscription" style="margin-bottom: 30px;">
       <div class="card card-body">
         <h2>Inscription</h2>
-        <form action="inscription.php" method="post">
+        <form action="../control/inscription.php" method="post">
           <div class="form-group row">
             <label for="pseudoIns" class="col-sm-2 col-form-label">Pseudo</label>
             <div class="col-sm-10">
@@ -102,15 +102,17 @@ if (!session_id()) @ session_start();
       <div class="col-12 col-md-4">
         <div class="card">
           <div class="card-body">
+
             <h2>Se connecter</h2>
-            <form>
+            <form action="../control/connexion.php" method="post">
               <div class="form-group">
-                <label for="exampleInputEmail1">Pseudo</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer le pseudo">
+                <label for="pseudoCo">Pseudo</label>
+                 <!-- aria-describedby="emailHelp" -->
+                <input name="pseudo" type="text" class="form-control" id="pseudoCo" placeholder="Entrer le pseudo">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Mot de passe</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="azerty123@$">
+                <label for="pwd">Mot de passe</label>
+                <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Entrer le mot de passe">
               </div>
               <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -121,7 +123,6 @@ if (!session_id()) @ session_start();
 
           </div>
         </div>
-
       </div>
       <div class="col-12 col-md-8 block-mobile">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

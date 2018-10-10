@@ -6,15 +6,15 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item <?php 
+        <li class="nav-item <?php
             $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
 if($name=="pagecategorie" or $name=="accueil"){
     echo "active";
 }
 ?>">
           <a class="nav-link" href="accueil.php">
-              
-            <img  class="nav-img<?php 
+
+            <img  class="nav-img<?php
             $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
 if($name=="pagecategorie" or $name=="accueil"){
     echo "-active";
@@ -24,14 +24,14 @@ if($name=="pagecategorie" or $name=="accueil"){
             Accueil
           </a>
         </li>
-        <li class="nav-item <?php 
+        <li class="nav-item <?php
             $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
 if($name=="mesdebats"){
     echo "active";
 }
 ?>">
           <a class="nav-link" href="mesdebats.php">
-            <img class="nav-img<?php 
+            <img class="nav-img<?php
             $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
 if($name=="mesdebats"){
     echo "-active";
@@ -60,12 +60,12 @@ if($name=="mesdebats"){
           </div>
         </div>
       </form>
-      <?php 
+      <?php
             $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
 if($name!="nouveaudebat"){
     echo '<a class="btn btn-primary my-2 my-sm-0" href="nouveaudebat.php" role="button">Nouveau débat</a>';
 }
 ?>
-      
+
     </div>
   </nav>
