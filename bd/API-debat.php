@@ -2,7 +2,6 @@
 
 <?php
 
-require_once("data/mdp.php");
 require_once("data/PDO.php");
 
 // Récupérer l'ID d'un User dont on connaît le pseudo
@@ -150,8 +149,6 @@ function listeDebats($database,$pseudo){
   $stmt->execute();
   return $lesDeb;
 }
-
-echo "Connexion réussie";
 // Fermeture de la connexion
 // $database = null;
 
