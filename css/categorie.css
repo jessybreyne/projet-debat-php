@@ -20,3 +20,28 @@
 .bg-reponse {
   background-color: #c7ffd2;
 }
+
+.ban {
+  padding-top: 33px;
+}
+
+.titreaccueil {
+  padding-top: 10px;
+  margin: 0 auto;
+}
+
+.ligneban {
+  margin-bottom: 40px;
+}
+
+.alerteaccueil {
+  margin-top: 15px;
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.34) !important;
+}
+
+.bg-white {
+  background-color: #f3f3f3 !important;
+}

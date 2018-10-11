@@ -14,6 +14,14 @@ if (isset($_SESSION["successCo"])){
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');
  ?>
+ <?php
+
+// IMPORTATION DES FONCTIONS DE L'API PHP-BD
+require_once("../bd/API-debat.php");
+
+// Démarrer la connexion
+$database = launchPDO("../bd/data");
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -82,7 +90,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
     <!-- MESSAGE BIENVENUE APRÈS INSCRIPTION -->
     <?php if (isset($msgIns)) { ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
       <strong>Inscription réussie</strong> <br>
       <?php echo $msgIns; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -93,7 +101,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
     <!-- MESSAGE BIENVENUE APRÈS CONNEXION -->
     <?php if (isset($msgCo)) { ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
       <strong>Connexion réussie</strong> <br>
       <?php echo $msgCo; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -102,57 +110,26 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
     </div>
     <?php } ?>
 
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Liste des débats</h6>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Titre du débat</strong>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Titre du débat</strong>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Titre du débat</strong>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </p>
-      </div>
-      <small class="d-block text-right mt-3">
-        <a href="#">Afficher plus de débat</a>
-      </small>
+    <div class="row">
+      <h3 class="titreaccueil">Découvrez, participez, créez de nouveaux débats...</h3>
     </div>
-
-
-    <nav aria-label="..." class="pagination justify-content-center">
-      <ul class="pagination">
-       <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item active">
-        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
+    <div class="row ligneban">
+      <?php
+      foreach (listeCateg($database) as $categ) {
+        echo '<div class="col-12 col-sm-6 ban">';
+        echo '<a href="pagecategorie.php?=';
+        echo strtolower($categ);
+        echo '">';
+        echo '<img src="../img/ban/';
+        echo strtolower($categ);
+        echo '.png" alt="';
+        echo strtolower($categ);
+        echo '" height="100%" width="100%">';
+        echo '</a>';
+        echo '</div>';
+      }
+      ?>
+    </div>
 </main>
 
     <!-- Bootstrap core JavaScript
