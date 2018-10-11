@@ -65,15 +65,15 @@ function getInfosDebat($database,$idDeb){
 
 // Connaître la date de dernière activité d'un Debat dont on connaît le titre
 function derniereActivite($database,$titreDeb){
-  $lesMess = "SELECT strftime('%d/%m/%Y %H:%M:%S',max(datePub)) as lastModif from DEBAT natural join MESSAGE where idDebat=:idDebat";
-  $stmt = $database->prepare($lesMess);
-  $debatID = getDebatID($database,$titreDeb);
-  $stmt->bindParam(':idDebat',$debatID);
-  $stmt->execute();
-  $res = getArray($stmt);
   if (count(listeMessages($database,$titreDeb)) <= 0){ // Aucun message dans le débat
     return "Aucune activité";
   } else {
+    $lesMess = "SELECT strftime('%d/%m/%Y %H:%M:%S',max(datePub)) as lastModif from DEBAT natural join MESSAGE where idDebat=:idDebat";
+    $stmt = $database->prepare($lesMess);
+    $debatID = getDebatID($database,$titreDeb);
+    $stmt->bindParam(':idDebat',$debatID);
+    $stmt->execute();
+    $res = getArray($stmt);
     return $res[0]["lastModif"];
   }
 }
