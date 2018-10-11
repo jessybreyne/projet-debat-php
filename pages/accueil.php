@@ -14,6 +14,14 @@ if (isset($_SESSION["successCo"])){
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');
  ?>
+ <?php
+
+// IMPORTATION DES FONCTIONS DE L'API PHP-BD
+require_once("../bd/API-debat.php");
+
+// Démarrer la connexion
+$database = launchPDO("../bd/data");
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -82,7 +90,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
     <!-- MESSAGE BIENVENUE APRÈS INSCRIPTION -->
     <?php if (isset($msgIns)) { ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
       <strong>Inscription réussie</strong> <br>
       <?php echo $msgIns; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -93,7 +101,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
     <!-- MESSAGE BIENVENUE APRÈS CONNEXION -->
     <?php if (isset($msgCo)) { ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
       <strong>Connexion réussie</strong> <br>
       <?php echo $msgCo; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -103,41 +111,25 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
     <?php } ?>
 
     <div class="row">
-      <h3 style="margin: 0 auto;">Découvrez, participez, créez de nouveaux débats...</h3>
+      <h3 class="titreaccueil">Découvrez, participez, créez de nouveaux débats...</h3>
     </div>
-
-
-    <div class="row">
-      <div class="col-12 col-sm-6">
-        <a href="pagecategorie.php"><img src="../img/ban/economie.png" alt="economie" height="100%" width="100%"></a>
-      </div>
-      <div class="col-12 col-sm-6">
-        <a href="pagecategorie.php"><img src="../img/ban/economie.png" alt="economie" height="100%" width="100%"></a>
-      </div>
+    <div class="row ligneban">
+      <?php
+      foreach (listeCateg($database) as $categ) {
+        echo '<div class="col-12 col-sm-6 ban">';
+        echo '<a href="pagecategorie.php?=';
+        echo strtolower($categ);
+        echo '">';
+        echo '<img src="../img/ban/';
+        echo strtolower($categ);
+        echo '.png" alt="';
+        echo strtolower($categ);
+        echo '" height="100%" width="100%">';
+        echo '</a>';
+        echo '</div>';
+      }
+      ?>
     </div>
-
-    <nav aria-label="..." class="pagination justify-content-center">
-      <ul class="pagination">
-       <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item active">
-        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
 </main>
 
     <!-- Bootstrap core JavaScript
