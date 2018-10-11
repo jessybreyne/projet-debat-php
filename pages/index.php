@@ -40,22 +40,13 @@ if (isset($_SESSION["erreur"])) {
       <div style="margin: 0 auto; color: #e1e1e1;"><h3>Plateforme de débat collaborative</h3>
       </div>
     </div>
-
-
-
   </header>
-
-
 
   <main role="main" class="container espacement-main">
     <div class="row block">
-
       <h3 style="color: white;">Nouvel arrivant ? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous !</a></h3>
-
     </div>
     <div class="row block">
-
-
       <?php if (isset($msgError)) { ?>
       <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
         <strong>Inscription/Connexion refusée</strong> <br>
@@ -65,7 +56,6 @@ if (isset($_SESSION["erreur"])) {
         </button>
       </div>
       <?php } ?>
-
     </div>
     <div class="collapse row block" id="collapseInscription" style="margin-bottom: 30px;">
       <div class="card card-body">
