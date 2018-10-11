@@ -41,12 +41,23 @@ if (!formEstRempli()){ // On s'assure que tout est bien rempli
   } else {
     // INSCRIPTION OK
     newUser($database,$_POST["pseudo"],$_POST["pwd1"]);
-    $_SESSION["pseudo"] = $_POST["pseudo"];
-    $_SESSION["successIns"] = "Bienvenue sur la plateforme, {$_SESSION["pseudo"]} !";
 
-    // Fermeture de la connexion
-    $database = null;
-    header('Location: ../pages/accueil.php');
+    if (pseudoExiste($database,$_POST["pseudo"])) {
+      // Le nouveau compte abien été ajouté à la base
+      $_SESSION["pseudo"] = $_POST["pseudo"];
+      $_SESSION["successIns"] = "Bienvenue sur la plateforme, {$_SESSION["pseudo"]} !";
+      
+      // Fermeture de la connexion
+      $database = null;
+      header('Location: ../pages/accueil.php');
+    } else {
+      // La BD n'est pas accessible ou alors pas les droits d'écriture
+      $_SESSION["erreur"] = "La base de données n'est pas accessible !";
+
+      // Fermeture de la connexion
+      $database = null;
+      header('Location: ../pages/index.php');
+    }
   }
 }
 
