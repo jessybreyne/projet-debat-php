@@ -156,6 +156,21 @@ function listeDebats($database,$pseudo){
   $stmt->execute();
   return $lesDeb;
 }
+
+// Récupérer la liste des catégories
+function listeCateg($database){
+  $lesCateg = "SELECT * from CATEGORIE";
+  $query = $database->query($lesCateg);
+
+  // Transformation en array php
+  $res = array();
+  while($row = $query->fetch()){
+    array_push($res,$row["nomCateg"]);
+  }
+  return $res;
+}
+
+
 // Fermeture de la connexion
 // $database = null;
 
