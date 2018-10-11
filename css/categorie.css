@@ -45,3 +45,13 @@
 .bg-white {
   background-color: #f3f3f3 !important;
 }
+
+.ban img {
+  box-shadow: 0px 0px 16px 2px #757575;
+  transition: all 1s ease-out;
+}
+
+.ban img:hover {
+  transition: all 0.5s ease-out;
+  filter: drop-shadow(0px 0px 30px red) invert(75%);;
+}
