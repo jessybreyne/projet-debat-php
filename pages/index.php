@@ -1,5 +1,6 @@
 <?php
 if (!session_id()) @ session_start();
+if (isset($_SESSION["pseudo"])) header('Location: accueil.php');
  ?>
 
 <!doctype html>

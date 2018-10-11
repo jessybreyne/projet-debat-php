@@ -17,7 +17,7 @@ function filtrerForm(){
 }
 
 if (!formEstRempli()){ // On s'assure que tout est bien rempli
-  $_SESSION["erreurInscription"] = "Veuillez compléter les champs indiqués !";
+  $_SESSION["erreur"] = "Veuillez compléter les champs indiqués !";
 
   // Fermeture de la connexion
   $database = null;
@@ -35,6 +35,7 @@ if (!formEstRempli()){ // On s'assure que tout est bien rempli
     $mdpUser = getInfosUser($database,$_POST["pseudo"])["mdpHash"];
     if ($mdpPost == $mdpUser){
       // CONNEXION OK
+      $_SESSION["pseudo"] = $_POST["pseudo"];
       $_SESSION["successCo"] = "Bon retour sur la plateforme, {$_SESSION["pseudo"]} !";
 
       // Fermeture de la connexion

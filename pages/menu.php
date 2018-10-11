@@ -54,7 +54,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
     <div class="dropdown-menu" aria-labelledby="dropdown04">
       <a class="dropdown-item" href="#">Profil</a>
       <a class="dropdown-item" href="#">Préférences</a>
-      <a class="dropdown-item" href="#">Se deconnecter</a>
+      <a class="dropdown-item" href="../control/deconnexion.php">Se deconnecter</a>
     </div>
   </li>
 </ul>
