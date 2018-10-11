@@ -1,6 +1,10 @@
 <?php
 if (!session_id()) @ session_start();
 if (isset($_SESSION["pseudo"])) header('Location: accueil.php');
+if (isset($_SESSION["erreur"])) {
+  $msgError = $_SESSION["erreur"];
+  $_SESSION["erreur"] = null;
+}
  ?>
 
 <!doctype html>
@@ -48,10 +52,10 @@ if (isset($_SESSION["pseudo"])) header('Location: accueil.php');
 
       <h3 style="color: white;">Nouvel arrivant ? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous !</a></h3>
 
-      <?php if (isset($_SESSION["erreur"])) { ?>
+      <?php if (isset($msgError)) { ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Inscription refusée</strong> <br>
-        <?php echo $_SESSION["erreur"]; ?>
+        <?php echo $msgError; ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
