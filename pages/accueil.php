@@ -117,7 +117,7 @@ $database = launchPDO("../bd/data");
       <?php
       foreach (listeCateg($database) as $categ) {
         echo '<div class="col-12 col-sm-6 ban">';
-        echo '<a href="pagecategorie.php?=';
+        echo '<a href="pagecategorie.php?categorie=';
         echo strtolower($categ);
         echo '">';
         echo '<img src="../img/ban/';
