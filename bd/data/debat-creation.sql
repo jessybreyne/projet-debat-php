@@ -23,7 +23,7 @@ create table CATEGORIE(
 create table DEBAT(
   idDebat int primary key,
   idCreateur int,
-  nomCateg varchar(15) UNIQUE,
+  nomCateg varchar(15),
   titre varchar(100) UNIQUE,
   constraint FKCreaDeb foreign key (idCreateur) references UTILISATEUR(idUser),
   constraint FKCategDeb foreign key (nomCateg) references CATEGORIE(nomCateg)

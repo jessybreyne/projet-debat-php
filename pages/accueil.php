@@ -83,14 +83,15 @@ $database = launchPDO("../bd/data");
     <div class="row ligneban">
       <?php
       foreach (listeCateg($database) as $categ) {
+        $nomCateg = $categ["nomCateg"];
         echo '<div class="col-12 col-sm-6 ban">';
         echo '<a href="pagecategorie.php?categorie=';
-        echo $categ;
+        echo $nomCateg;
         echo '">';
         echo '<img src="../img/ban/';
-        echo strtolower($categ);
+        echo strtolower($nomCateg);
         echo '.png" alt="';
-        echo strtolower($categ);
+        echo $nomCateg;
         echo '" height="100%" width="100%">';
         echo '</a>';
         echo '</div>';

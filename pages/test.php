@@ -8,10 +8,25 @@ $database = launchPDO("../bd/data");
 
 print_r($database);
 
-echo "<br>";
+################################### MES TESTS
 
-foreach (listeCateg($database) as $categ) {
-  echo $categ."<br>";
-}
+// echo "<br>";
+//
+// foreach (listeCateg($database) as $categ) {
+//   print_r($categ);
+//   echo "<br>";
+// }
+//
+// echo "<br>";
+//
+// foreach (listeDebatsCateg($database,"Informatique") as $debat) {
+//   print_r($debat["titre"]);
+//   echo "<br>";
+// }
+
+echo "<br><br><br><br>TEST dernière activité<br>";
+print_r(derniereActivite($database,"L'IA, un danger pour l'Homme ?"));
+echo "<br>";
+print_r(derniereActivite($database,"Les cookies, inoffensifs ou danger pour la vie privée ?"));
 
  ?>

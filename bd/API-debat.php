@@ -9,6 +9,15 @@ die();
 
 require_once("data/PDO.php");
 
+// Transformer un résultat de requette en Array pour PHP
+function getArray($query){
+  $res = array();
+  while($row = $query->fetch()){
+    array_push($res,$row);
+  }
+  return $res;
+}
+
 // Récupérer l'ID d'un User dont on connaît le pseudo
 function getUserID($database,$pseudo){
   $infoU = "SELECT * from UTILISATEUR where pseudo=:pseudo";
@@ -20,11 +29,20 @@ function getUserID($database,$pseudo){
 
 // Récupérer l'ID d'un Débat dont on connaît le titre
 function getDebatID($database,$titre){
-  $infoDeb = "SELECT * from UTILISATEUR where titre=:titre";
+  $infoDeb = "SELECT * from DEBAT where titre=:titre";
   $stmt = $database->prepare($infoDeb);
   $stmt->bindParam(':titre',$titre);
   $stmt->execute();
   return $stmt->fetch(PDO::FETCH_ASSOC)['idDebat']; // Retourne idDebat de la première ligne
+}
+
+// Récupérer une Array contenant toutes les infos d'un User dont on connaît l'ID'
+function getInfosUserID($database,$idU){
+  $user = "SELECT * from UTILISATEUR where idUser=:idUser";
+  $stmt = $database->prepare($user);
+  $stmt->bindParam(':idUser',$idU);
+  $stmt->execute();
+  return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne la première ligne
 }
 
 // Récupérer une Array contenant toutes les infos d'un User dont on connaît le pseudo
@@ -45,6 +63,21 @@ function getInfosDebat($database,$idDeb){
   return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne la première ligne
 }
 
+// Connaître la date de dernière activité d'un Debat dont on connaît le titre
+function derniereActivite($database,$titreDeb){
+  $lesMess = "SELECT strftime('%d/%m/%Y %H:%M:%S',max(datePub)) as lastModif from DEBAT natural join MESSAGE where idDebat=:idDebat";
+  $stmt = $database->prepare($lesMess);
+  $debatID = getDebatID($database,$titreDeb);
+  $stmt->bindParam(':idDebat',$debatID);
+  $stmt->execute();
+  $res = getArray($stmt);
+  if (count(listeMessages($database,$titreDeb)) <= 0){ // Aucun message dans le débat
+    return "Aucune activité";
+  } else {
+    return $res[0]["lastModif"];
+  }
+}
+
 // Savoir si un pseudo est déjà utilisé (utile quand on ajoute un nouvel User)
 function pseudoExiste($database,$pseudo){
   $idU = "SELECT count(idUser) as nbU FROM UTILISATEUR where pseudo=:pseudo";
@@ -59,9 +92,16 @@ function hashMDP($mdpBrut){
   return hash('sha256',$mdpBrut);
 }
 
-// Obtenir un nouveau userId libre
+// Obtenir un nouveau idUser libre
 function newIDuser($database){
   $idU = "SELECT max(idUser) as newID from UTILISATEUR";
+  $stmt = $database->query($idU);
+  return $stmt->fetch()['newID']+1;
+}
+
+// Obtenir un nouveau idDebat libre
+function newIDdebat($database){
+  $idU = "SELECT max(idDebat) as newID from DEBAT";
   $stmt = $database->query($idU);
   return $stmt->fetch()['newID']+1;
 }
@@ -116,7 +156,7 @@ function listeMessages($database,$titreDeb){
   $debatID = getDebatID($database,$titreDeb);
   $stmt->bindParam(':idDebat',$debatID);
   $stmt->execute();
-  return $lesMess;
+  return getArray($stmt);
 }
 
 // Ajouter un suivi entre un User (dont on connaît le pseudo)
@@ -145,16 +185,28 @@ function newDebat($database,$pseudo,$nomCateg,$titreDeb){
   newSuivi($database,$pseudo,$titreDeb);
 }
 
-// Récupérer les données pour la page "Mes débats" (catégorie, titre, auteur)
+// Récupérer les données pour la page "Mes débats" (idDebat, catégorie, titre, idCreateur)
 // concernant un User dont on connaît le pseudo
 // (les débats qu'il a créés ou qu'il suit)
-function listeDebats($database,$pseudo){
-  $lesDeb = "SELECT nomCateg,titre,idUser from CATEGORIE natural join DEBAT natural join SUIVRE and idUser=:idUser";
+function listeDebatsUser($database,$pseudo){
+  $lesDeb = "SELECT idDebat,nomCateg,titre,idCreateur from CATEGORIE natural join DEBAT natural join SUIVRE where idUser=:idUser";
   $stmt = $database->prepare($lesDeb);
   $userID = getUserID($database,$pseudo);
   $stmt->bindParam(':idUser',$userID);
   $stmt->execute();
-  return $lesDeb;
+
+  return getArray($stmt);
+}
+
+// Récupérer la liste des débats d'une catégorie (idDebat, titre, idCreateur)
+function listeDebatsCateg($database,$nomCateg){
+  $lesDeb = "SELECT idDebat,titre,idCreateur from CATEGORIE natural join DEBAT where nomCateg=:nomCateg";
+  $stmt = $database->prepare($lesDeb);
+  $userID = getUserID($database,$nomCateg);
+  $stmt->bindParam(':nomCateg',$nomCateg);
+  $stmt->execute();
+
+  return getArray($stmt);
 }
 
 // Récupérer la liste des catégories
@@ -162,12 +214,7 @@ function listeCateg($database){
   $lesCateg = "SELECT * from CATEGORIE";
   $query = $database->query($lesCateg);
 
-  // Transformation en array php
-  $res = array();
-  while($row = $query->fetch()){
-    array_push($res,$row["nomCateg"]);
-  }
-  return $res;
+  return getArray($query);
 }
 
 

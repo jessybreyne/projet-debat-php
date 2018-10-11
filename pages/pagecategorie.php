@@ -20,6 +20,12 @@
 
   <?php
   include 'menu.php';
+
+  // IMPORTATION DES FONCTIONS DE L'API PHP-BD
+  require_once("../bd/API-debat.php");
+
+  // Démarrer la connexion
+  $database = launchPDO("../bd/data");
   ?>
 
   <div class="nav-scroller bg-white shadow-sm">
@@ -64,28 +70,23 @@
   <main role="main" class="container">
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Liste des débats: NOM CATEGORIE</h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0">Liste des débats de la catégorie <strong><?php echo $_GET["categorie"]; ?></strong></h6>
+
+      <?php foreach (listeDebatsCateg($database,$_GET["categorie"]) as $debat) { ?>
       <div class="media text-muted pt-3">
         <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Titre du débat</strong>
-          10/10/2018 | Auteur
+          <strong class="d-block text-gray-dark"><?php echo $debat["titre"]; ?></strong>
+          <?php
+          $infosCreateur = getInfosUserID($database,$debat["idCreateur"]);
+          echo "Créateur : ".$infosCreateur["pseudo"];
+          echo " | Dernière activité : ";
+          print_r(derniereActivite($database,$debat["titre"]));
+
+           ?>
         </p>
       </div>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Titre du débat</strong>
-        10/10/2018 | Auteur
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Titre du débat</strong>
-        10/10/2018 | Auteur
-        </p>
-      </div>
+      <?php } ?>
     </div>
 
 
