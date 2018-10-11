@@ -54,7 +54,7 @@ if (isset($_SESSION["erreur"])) {
 
       <?php if (isset($msgError)) { ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Inscription refusée</strong> <br>
+        <strong>Inscription/Connexion refusée</strong> <br>
         <?php echo $msgError; ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
