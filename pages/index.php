@@ -134,22 +134,22 @@ if (isset($_SESSION["erreur"])) {
             <div class="carousel-item active">
               <img class="d-block w-100" src="../img/Slide-1.png" alt="First slide">
               <div class="carousel-caption d-none d-md-block">
-                <h5>Titre</h5>
-                <p>ppp</p>
+                <h5 class="bgtextcarouselle">Oui ou non ?</h5>
+                <p class="bgtextcarouselle">Des débats à contradiction binaire ? Débat est fait pour vous.</p>
               </div>
             </div>
             <div class="carousel-item">
               <img class="d-block w-100" src="../img/Slide-2.png" alt="Second slide">
               <div class="carousel-caption d-none d-md-block">
-                <h5>Titre</h5>
-                <p>ppp</p>
+                <h5 class="bgtextcarouselle">Les opinions</h5>
+                <p class="bgtextcarouselle">Accédez à une grande diversité d'opinions.</p>
               </div>
             </div>
             <div class="carousel-item">
               <img class="d-block w-100" src="../img/Slide-3.png" alt="Third slide">
               <div class="carousel-caption d-none d-md-block">
-                <h5>Titre</h5>
-                <p>ppp</p>
+                <h5 class="bgtextcarouselle">L'argumentation</h5>
+                <p class="bgtextcarouselle">De tout temps, l'humanité à débattu pour trouver des solutions.</p>
               </div>
             </div>
           </div>
