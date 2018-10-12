@@ -70,13 +70,13 @@ if (isset($_SESSION["erreur"])) {
             <div class="form-group row">
               <label for="pwdIns1" class="col-sm-2 col-form-label">Mot de passe</label>
               <div class="col-sm-10">
-                <input name="pwd1" type="password" class="form-control" id="pwdIns1" placeholder="Mot de passe" required>
+                <input name="pwd1" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Entrez minimum 8 caractères, faites un mot de passe fort (Majuscules, chiffres, caractères spéciaux, minuscules...)" class="form-control" id="pwdIns1" placeholder="Mot de passe" required>
               </div>
             </div>
             <div class="form-group row">
               <label for="pwdIns2" class="col-sm-2 col-form-label">Confirmer le mot de passe</label>
               <div class="col-sm-10">
-                <input name="pwd2" type="password" class="form-control" id="pwdIns2" placeholder="Mot de passe" required>
+                <input name="pwd2" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Entrez minimum 8 caractères, faites un mot de passe fort (Majuscules, chiffres, caractères spéciaux, minuscules...)" class="form-control" id="pwdIns2" placeholder="Mot de passe" required>
               </div>
             </div>
             <div class="form-group row">
