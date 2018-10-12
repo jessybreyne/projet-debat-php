@@ -62,3 +62,8 @@
  background-color: #00000080;
  border-radius: 8px;
 }
+
+.cardc {
+	background-color: #fff;
+	width: 100%;
+}
