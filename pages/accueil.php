@@ -3,17 +3,17 @@ if (!session_id()) @ session_start();
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
-if (isset($_SESSION["erreur"])) $_SESSION["erreur"] = null;
+if (isset($_SESSION["erreur"])) unset($_SESSION["erreur"]);
 
 if (isset($_SESSION["successIns"])){
   $msgIns = $_SESSION["successIns"];
-  $_SESSION["successIns"] = null;
+  unset($_SESSION["successIns"]);
 } elseif (isset($_SESSION["successCo"])){
   $msgCo = $_SESSION["successCo"];
-  $_SESSION["successCo"] = null;
+  unset($_SESSION["successCo"]);
 } elseif (isset($_SESSION["creationDebatOK"])) {
   $msgDebatOK = $_SESSION["creationDebatOK"];
-  $_SESSION["creationDebatOK"] = null;
+  unset($_SESSION["creationDebatOK"]);
 }
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');

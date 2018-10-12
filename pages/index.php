@@ -1,9 +1,9 @@
 <?php
 if (!session_id()) @ session_start();
-if (isset($_SESSION["pseudo"])) header('Location: accueil.php');
+if (isset($_SESSION["pseudo"])) unset($_SESSION["pseudo"]);
 if (isset($_SESSION["erreur"])) {
   $msgError = $_SESSION["erreur"];
-  $_SESSION["erreur"] = null;
+  unset($_SESSION["erreur"]);
 }
 ?>
 
@@ -48,7 +48,7 @@ if (isset($_SESSION["erreur"])) {
       </div>
       <div class="row block">
       </div>
-      
+
       <?php if (isset($msgError)) { ?>
         <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
           <strong>Inscription/Connexion refusée</strong> <br>

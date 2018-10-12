@@ -12,7 +12,7 @@ if (!session_id()) @ session_start();
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 if (isset($_SESSION["erreur"])) {
   $msgError = $_SESSION["erreur"];
-  $_SESSION["erreur"] = null;
+  unset($_SESSION["erreur"]);
 }
 
 ?>
