@@ -129,15 +129,14 @@ function newUser($database,$pseudo,$mdpBrut){
   $stmt->execute();
 }
 
-// Connaître le nombre de messages dans un débat (dont on connait l'ID)
+// Connaître le nombre de messages dans un débat (dont on connait le titre)
 function nbMessages($database,$titreDeb){
-
-  $lesMess = "SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat";
+  $lesMess = "SELECT count(*) as nbMess from DEBAT natural join MESSAGE where idDebat=:idDebat group by idDebat";
   $stmt = $database->prepare($lesMess);
   $debatID = getDebatID($database,$titreDeb);
   $stmt->bindParam(':idDebat',$debatID);
   $stmt->execute();
-  return count($lesMess);
+  return $stmt->fetch()["nbMess"];
 }
 
 // Ajouter un message au débat
@@ -159,7 +158,7 @@ function newMessage($database,$pseudo,$titreDeb,$message){
   $stmt->execute();
 }
 
-// Récupérer la liste des messages d'un débat dont on connaît l'ID (dans l'ordre)
+// Récupérer la liste des messages d'un débat dont on connaît le titre (dans l'ordre)
 function listeMessages($database,$titreDeb){
 
   $lesMess = "SELECT * from DEBAT natural join MESSAGE where idDebat=:idDebat order by numMess";

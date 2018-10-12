@@ -79,7 +79,7 @@ $database = launchPDO("../bd/data");
       <h6 class="border-bottom border-gray pb-2 mb-0"><?php echo count($listeDebCateg); ?> débats dans la catégorie <strong><?php echo $_GET["categorie"]; ?></strong></h6>
 
       <?php foreach ($listeDebCateg as $debat) { ?>
-      <a href="#">
+      <a href="pageDebat.php?debat=<?php echo $debat["titre"]; ?>">
       <div class="media text-muted pt-3">
         <img src=<?php echo "../img/icon/".strtolower($_GET["categorie"]).".png"; ?> alt=<?php echo $_GET["categorie"]; ?> class="iconCateg">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">

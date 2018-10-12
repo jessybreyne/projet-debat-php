@@ -14,17 +14,22 @@ if (isset($_SESSION["successIns"])){
 } elseif (isset($_SESSION["creationDebatOK"])) {
   $msgDebatOK = $_SESSION["creationDebatOK"];
   unset($_SESSION["creationDebatOK"]);
+} elseif (isset($_SESSION["erreurDebat"])) {
+  $msgError = $_SESSION["erreurDebat"];
+  unset($_SESSION["erreurDebat"]);
+  echo $msgError;
 }
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');
- ?>
- <?php
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
 
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
+
+require_once 'menu.php';
+
 ?>
 
 <!doctype html>
@@ -46,10 +51,6 @@ $database = launchPDO("../bd/data");
 </head>
 
 <body class="bg-light">
-
-  <?php
-  require_once 'menu.php';
-  ?>
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
@@ -90,6 +91,17 @@ $database = launchPDO("../bd/data");
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+    <?php } ?>
+
+    <!-- MESSAGE D'ERREUR -->
+    <?php if (isset($msgError)) { ?>
+      <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
+        <strong>Oups... Erreur 404</strong> <br>
+        <?php echo $msgError; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <?php } ?>
 
     <div class="row">
