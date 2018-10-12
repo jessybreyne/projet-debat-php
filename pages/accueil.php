@@ -1,15 +1,19 @@
 <?php
 if (!session_id()) @ session_start();
+
+if (!isset($_SESSION["pseudo"])) header('Location: index.php');
+
 if (isset($_SESSION["erreur"])) $_SESSION["erreur"] = null;
 
 if (isset($_SESSION["successIns"])){
   $msgIns = $_SESSION["successIns"];
   $_SESSION["successIns"] = null;
-}
-
-if (isset($_SESSION["successCo"])){
+} elseif (isset($_SESSION["successCo"])){
   $msgCo = $_SESSION["successCo"];
   $_SESSION["successCo"] = null;
+} elseif (isset($_SESSION["creationDebatOK"])) {
+  $msgDebatOK = $_SESSION["creationDebatOK"];
+  $_SESSION["creationDebatOK"] = null;
 }
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');
@@ -71,6 +75,17 @@ $database = launchPDO("../bd/data");
     <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
       <strong>Connexion réussie</strong> <br>
       <?php echo $msgCo; ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <?php } ?>
+
+    <!-- MESSAGE CRÉATION DÉBAT OK -->
+    <?php if (isset($msgDebatOK)) { ?>
+    <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
+      <strong>Initiation du débat réussie</strong> <br>
+      <?php echo $msgDebatOK; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

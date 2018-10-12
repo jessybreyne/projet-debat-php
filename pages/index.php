@@ -47,16 +47,18 @@ if (isset($_SESSION["erreur"])) {
         <h3 style="color: white;">Nouvel arrivant ? <a class="btn btn-primary" data-toggle="collapse" href="#collapseInscription" role="button" aria-expanded="false" aria-controls="collapseInscription">Inscrivez-vous !</a></h3>
       </div>
       <div class="row block">
-        <?php if (isset($msgError)) { ?>
-          <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
-            <strong>Inscription/Connexion refusée</strong> <br>
-            <?php echo $msgError; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        <?php } ?>
       </div>
+      
+      <?php if (isset($msgError)) { ?>
+        <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
+          <strong>Inscription/Connexion refusée</strong> <br>
+          <?php echo $msgError; ?>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php } ?>
+
       <div class="collapse row block" id="collapseInscription" style="margin-bottom: 30px;">
         <div class="card card-body">
           <h2>Inscription</h2>

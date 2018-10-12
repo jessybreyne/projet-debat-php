@@ -68,7 +68,7 @@ function derniereActivite($database,$titreDeb){
   if (count(listeMessages($database,$titreDeb)) == 0){ // Aucun message dans le débat
     return "Aucune activité";
   } else {
-    $lesMess = "SELECT strftime('%d/%m/%Y %H:%M:%S',max(datePub)) as lastModif from DEBAT natural join MESSAGE where idDebat=:idDebat";
+    $lesMess = "SELECT max(datePub) as lastModif from DEBAT natural join MESSAGE where idDebat=:idDebat";
     $stmt = $database->prepare($lesMess);
     $debatID = getDebatID($database,$titreDeb);
     $stmt->bindParam(':idDebat',$debatID);
@@ -91,7 +91,7 @@ function pseudoExiste($database,$pseudo){
 function titreDebExiste($database,$titre){
   $nbDeb = "SELECT count(idDebat) as nbDeb FROM DEBAT where titre=:titre";
   $stmt = $database->prepare($nbDeb);
-  $stmt->bindParam(':pseudo',$titre);
+  $stmt->bindParam(':titre',$titre);
   $stmt->execute();
   return $stmt->fetch()["nbDeb"] > 0;
 }
@@ -144,16 +144,18 @@ function nbMessages($database,$titreDeb){
 // par un utilisateur dont on connaît le nom
 // dans un débat dont on connaît l'ID
 function newMessage($database,$pseudo,$titreDeb,$message){
-  // On commence par calculer le numMess
-  $numMess = nbMessages($database,$titreDeb) + 1;
-  $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idAuteur, :contenu)";
+  $insert="INSERT INTO MESSAGE VALUES (:idDebat, :numMess, :idAuteur, :contenu, :datePub)";
   $stmt = $database->prepare($insert);
+
+  $numMess = nbMessages($database,$titreDeb) + 1;
   $debatID = getDebatID($database,$titreDeb);
   $userID = getUserID($database,$pseudo);
+
   $stmt->bindParam(':idDebat',$debatID);
   $stmt->bindParam(':numMess',$numMess);
   $stmt->bindParam(':idAuteur',$userID);
   $stmt->bindParam(':contenu',$message);
+  $stmt->bindParam(':datePub',date("Y-m-s H:i:s"));
   $stmt->execute();
 }
 
@@ -184,9 +186,11 @@ function newSuivi($database,$pseudo,$titreDeb){
 // par un utilisateur dont on connait le pseudo
 // dans une catégorie dont on connait le nom
 function newDebat($database,$pseudo,$nomCateg,$titreDeb){
-  $insert="INSERT INTO DEBAT (idCreateur,nomCateg,titre) VALUES (:idCreateur, :nomCateg, :titre)";
+  $insert="INSERT INTO DEBAT VALUES (:idDebat, :idCreateur, :nomCateg, :titre)";
   $stmt = $database->prepare($insert);
+  $debatID = newIDdebat($database);
   $userID = getUserID($database,$pseudo);
+  $stmt->bindParam(':idDebat',$debatID);
   $stmt->bindParam(':idCreateur',$userID);
   $stmt->bindParam(':nomCateg',$nomCateg);
   $stmt->bindParam(':titre',$titreDeb);

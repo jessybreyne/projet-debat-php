@@ -8,6 +8,13 @@ require_once("../bd/API-debat.php");
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
 
+if (!session_id()) @ session_start();
+if (!isset($_SESSION["pseudo"])) header('Location: index.php');
+if (isset($_SESSION["erreur"])) {
+  $msgError = $_SESSION["erreur"];
+  $_SESSION["erreur"] = null;
+}
+
 ?>
 
 <!doctype html>
@@ -38,6 +45,18 @@ $database = launchPDO("../bd/data");
   </div>
 
   <main role="main" class="container">
+
+    <!-- MESSAGE ERREUR CREATION DEBAT -->
+    <?php if (isset($msgError)) { ?>
+      <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
+        <strong>Création du débat refusée</strong> <br>
+        <?php echo $msgError; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php } ?>
+
     <div class="row">
       <div class="col">
         <div class="my-3 p-3 bg-reponse rounded shadow-sm">
@@ -46,12 +65,12 @@ $database = launchPDO("../bd/data");
 
             <form action="../control/ajoutDebat.php" method="post">
               <div class="form-group">
-                <input name="titre" type="text" class="form-control" id="formGroupExampleInput" placeholder="Saisissez le titre" required autofocus pattern="[A-Za-z0-9]{8,80}" title="Contenu du message d'initiation : Minimum 8 caractères">
+                <input name="titre" type="text" class="form-control" id="formGroupExampleInput" placeholder="Saisissez le titre" required autofocus pattern=".{8,80}" title="Contenu du message d'initiation : Minimum 8 caractères">
               </div>
               <div class="row">
                 <div class="col-12 col-md-8">
                   <div class="form-group">
-                    <textarea name="contenuMess1" class="form-control" id="exampleFormControlTextarea1" rows="3" style="height:310px;" placeholder="Expliquez le sujet, le problème, ouvrez le débat..."  required title="Contenu du message d'initiation"></textarea>
+                    <textarea name="contenuMess1" class="form-control" id="exampleFormControlTextarea1" rows="3" style="height:310px;" placeholder="Expliquez le sujet, le problème, ouvrez le débat..."  required pattern=".{10,}" title="Contenu du message d'initiation"></textarea>
                   </div>
                 </div>
                 <div class="col-12 col-md-4">
