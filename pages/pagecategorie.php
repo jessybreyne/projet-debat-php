@@ -1,3 +1,16 @@
+<?php
+include 'menu.php';
+
+$_GET["categorie"] = htmlspecialchars($_GET["categorie"]);
+
+// IMPORTATION DES FONCTIONS DE L'API PHP-BD
+require_once("../bd/API-debat.php");
+
+// Démarrer la connexion
+$database = launchPDO("../bd/data");
+?>
+
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -17,16 +30,6 @@
 </head>
 
 <body class="bg-light">
-
-  <?php
-  include 'menu.php';
-
-  // IMPORTATION DES FONCTIONS DE L'API PHP-BD
-  require_once("../bd/API-debat.php");
-
-  // Démarrer la connexion
-  $database = launchPDO("../bd/data");
-  ?>
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
@@ -70,11 +73,14 @@
   <main role="main" class="container">
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Liste des débats de la catégorie <strong><?php echo $_GET["categorie"]; ?></strong></h6>
+      <?php
+      $listeDebCateg = listeDebatsCateg($database,$_GET["categorie"]);
+      ?>
+      <h6 class="border-bottom border-gray pb-2 mb-0"><?php echo count($listeDebCateg); ?> débats dans la catégorie <strong><?php echo $_GET["categorie"]; ?></strong></h6>
 
-      <?php foreach (listeDebatsCateg($database,$_GET["categorie"]) as $debat) { ?>
+      <?php foreach ($listeDebCateg as $debat) { ?>
       <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+        <img src=<?php echo "../img/icon/".strtolower($_GET["categorie"]).".png"; ?> alt=<?php echo $_GET["categorie"]; ?> class="iconCateg">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
           <strong class="d-block text-gray-dark"><?php echo $debat["titre"]; ?></strong>
           <?php

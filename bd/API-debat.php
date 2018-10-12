@@ -65,7 +65,7 @@ function getInfosDebat($database,$idDeb){
 
 // Connaître la date de dernière activité d'un Debat dont on connaît le titre
 function derniereActivite($database,$titreDeb){
-  if (count(listeMessages($database,$titreDeb)) <= 0){ // Aucun message dans le débat
+  if (count(listeMessages($database,$titreDeb)) == 0){ // Aucun message dans le débat
     return "Aucune activité";
   } else {
     $lesMess = "SELECT strftime('%d/%m/%Y %H:%M:%S',max(datePub)) as lastModif from DEBAT natural join MESSAGE where idDebat=:idDebat";
@@ -85,6 +85,15 @@ function pseudoExiste($database,$pseudo){
   $stmt->bindParam(':pseudo',$pseudo);
   $stmt->execute();
   return $stmt->fetch()["nbU"] > 0;
+}
+
+// Savoir si un titre de débat est déjà utilisé (utile quand on ajoute un nouveau débat)
+function titreDebExiste($database,$titre){
+  $nbDeb = "SELECT count(idDebat) as nbDeb FROM DEBAT where titre=:titre";
+  $stmt = $database->prepare($nbDeb);
+  $stmt->bindParam(':pseudo',$titre);
+  $stmt->execute();
+  return $stmt->fetch()["nbDeb"] > 0;
 }
 
 // Hasher un MDP en Sha256
