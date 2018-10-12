@@ -81,6 +81,8 @@ if (isset($_SESSION["erreur"])) {
           </div>
           <div class="form-group row">
             <div class="col-sm-10">
+            <a href="conditions.html" target="_blank">Lire les conditions d'utilisation en cliquant ici.</a><br>
+
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck1">
                 <label class="form-check-label" for="gridCheck1">
