@@ -10,6 +10,16 @@ require_once("../bd/API-debat.php");
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
 
+if (isset($_GET["categorie"])) {
+  $_GET["categorie"] = htmlspecialchars($_GET["categorie"]);
+  if (!in_array($_GET["categorie"],listeCateg($database))) {
+    $_SESSION["erreurDebat"] = "Cette catégorie n'existe pas !";
+    // header('Location: accueil.php');
+  }
+} else {
+  header('Location: accueil.php');
+}
+
 if (isset($_GET["debat"])) {
   $_GET["debat"] = htmlspecialchars($_GET["debat"]);
   if (!titreDebExiste($database,$_GET["debat"])) {
@@ -45,7 +55,7 @@ include 'menu.php';
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="accueil.php">Revenir en arrière</a>
+      <a class="nav-link" href="pagecategorie.php?categorie=<?php echo $_GET["categorie"]; ?>">Revenir en arrière</a>
       <a class="nav-link" href="#">Règlement</a>
     </nav>
   </div>
@@ -94,8 +104,7 @@ include 'menu.php';
 
         <!-- AFFICHAGE DE TOUTES LES RÉPONSES -->
 
-
-
+        <!-- S'IL N'Y A AUCUNE RÉPONSE -->
         <?php
         if ($nbMessages <= 1){
         ?>
@@ -106,6 +115,8 @@ include 'menu.php';
             </p>
           </div>
         </div>
+
+        <!-- S'IL Y EN A -->
         <?php
         } else {
         for ($i=1; $i < $nbMessages; $i++) {

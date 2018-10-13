@@ -34,4 +34,7 @@ echo "<br>";
 
 echo "<br><br><br><br>TEST date()<br>";
 print_r(date("d/m/Y H:i:s"));
+
+echo "<br><br><br><br>TEST listeCateg()<br>";
+echo "<br>";
  ?>

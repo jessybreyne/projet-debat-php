@@ -5,6 +5,9 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
 if (isset($_SESSION["erreur"])) unset($_SESSION["erreur"]);
 
+
+// ON SAUVEGARDE LES MESSAGES DANS SESSION PUIS ON LA SUPPRIME
+// pour éviter qu'ils soient réutilisés pour aucune raison plus tard
 if (isset($_SESSION["successIns"])){
   $msgIns = $_SESSION["successIns"];
   unset($_SESSION["successIns"]);
@@ -109,8 +112,7 @@ require_once 'menu.php';
     </div>
     <div class="row ligneban">
       <?php
-      foreach (listeCateg($database) as $categ) {
-        $nomCateg = $categ["nomCateg"];
+      foreach (listeCateg($database) as $nomCateg) {
         echo '<div class="col-12 col-sm-6 ban">';
         echo '<a href="pagecategorie.php?categorie=';
         echo $nomCateg;

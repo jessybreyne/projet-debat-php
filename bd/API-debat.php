@@ -154,7 +154,7 @@ function newMessage($database,$pseudo,$titreDeb,$message){
   $stmt->bindParam(':numMess',$numMess);
   $stmt->bindParam(':idAuteur',$userID);
   $stmt->bindParam(':contenu',$message);
-  $stmt->bindParam(':datePub',date("Y-m-s H:i:s"));
+  $stmt->bindParam(':datePub',date("d/m/Y H:i:s"));
   $stmt->execute();
 }
 
@@ -221,12 +221,21 @@ function listeDebatsCateg($database,$nomCateg){
   return getArray($stmt);
 }
 
+// Récupérer les noms des catégories dans le résultat de la requête
+function nomsCateg($query){
+  $res = array();
+  while($row = $query->fetch()){
+    array_push($res,$row["nomCateg"]);
+  }
+  return $res;
+}
+
 // Récupérer la liste des catégories
 function listeCateg($database){
   $lesCateg = "SELECT * from CATEGORIE";
   $query = $database->query($lesCateg);
 
-  return getArray($query);
+  return nomsCateg($query);
 }
 
 
