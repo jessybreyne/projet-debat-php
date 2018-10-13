@@ -41,6 +41,7 @@ if (isset($_SESSION["erreur"])) {
     <nav class="nav nav-underline">
       <a class="nav-link" href="accueil.php">Revenir à l'accueil</a>
       <a class="nav-link" href="#">Règlement</a>
+      <a class="nav-link" href="conditionsutilisation.php">Conditions d'utilisation</a>
     </nav>
   </div>
 
