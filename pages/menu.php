@@ -52,7 +52,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
       <?php echo $_SESSION["pseudo"]; ?>
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdown04">
-      <a class="dropdown-item" href="#">Profil</a>
+      <a class="dropdown-item" href="profil.php">Profil</a>
       <a class="dropdown-item" href="#">Préférences</a>
       <a class="dropdown-item" href="../control/deconnexion.php">Se deconnecter</a>
     </div>

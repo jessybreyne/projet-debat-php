@@ -33,6 +33,7 @@ $database = launchPDO("../bd/data");
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
       <a class="nav-link" href="#">Règlement</a>
+      <a class="nav-link" href="conditionsutilisation.php">Conditions d'utilisation</a>
     </nav>
   </div>
 
@@ -40,10 +41,7 @@ $database = launchPDO("../bd/data");
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Profil de <strong><?php echo "Pseudo"; ?></strong></h6>
-
-     
     </div>
-
 </main>
 
     <!-- Bootstrap core JavaScript
