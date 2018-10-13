@@ -46,9 +46,19 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
       Mes débats
     </a>
   </li>
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown <?php
+      $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+      if($name=="profil"){
+        echo "active";
+      }
+      ?>">
     <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img class="nav-img" src="../img/round_person_white_48dp.png">
+      <img class="nav-img<?php
+      $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
+      if($name=="profil"){
+        echo "-active";
+      }
+      ?>" src="../img/round_person_white_48dp.png">
       <?php echo $_SESSION["pseudo"]; ?>
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdown04">
