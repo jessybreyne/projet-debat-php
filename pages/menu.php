@@ -48,14 +48,14 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
   </li>
   <li class="nav-item dropdown <?php
       $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
-      if($name=="profil"){
+      if($name=="profil" or $name=="preferences"){
         echo "active";
       }
       ?>">
     <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img class="nav-img<?php
       $name=explode(".php",basename($_SERVER['REQUEST_URI']))[0];
-      if($name=="profil"){
+      if($name=="profil" or $name=="preferences"){
         echo "-active";
       }
       ?>" src="../img/round_person_white_48dp.png">
@@ -63,7 +63,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdown04">
       <a class="dropdown-item" href="profil.php">Profil</a>
-      <a class="dropdown-item" href="#">Préférences</a>
+      <a class="dropdown-item" href="preferences.php">Préférences</a>
       <a class="dropdown-item" href="../control/deconnexion.php">Se deconnecter</a>
     </div>
   </li>
