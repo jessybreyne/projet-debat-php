@@ -1,4 +1,5 @@
 <?php
+if (!session_id()) @ session_start();
 
 if (!isset($_SESSION["pseudo"])) header('Location: ../pages/index.php');
 
@@ -11,7 +12,6 @@ require_once("../bd/API-debat.php");
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
 
-if (!session_id()) @ session_start();
 
 if (titreDebExiste($database,$_POST["titre"])){
   $_SESSION["erreur"] = "Ce débat existe déjà !";

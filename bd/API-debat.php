@@ -149,12 +149,13 @@ function newMessage($database,$pseudo,$titreDeb,$message){
   $numMess = nbMessages($database,$titreDeb) + 1;
   $debatID = getDebatID($database,$titreDeb);
   $userID = getUserID($database,$pseudo);
+  $date = date("d/m/Y H:i:s");
 
   $stmt->bindParam(':idDebat',$debatID);
   $stmt->bindParam(':numMess',$numMess);
   $stmt->bindParam(':idAuteur',$userID);
   $stmt->bindParam(':contenu',$message);
-  $stmt->bindParam(':datePub',date("d/m/Y H:i:s"));
+  $stmt->bindParam(':datePub',$date);
   $stmt->execute();
 }
 

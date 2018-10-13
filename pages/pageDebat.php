@@ -30,6 +30,18 @@ if (isset($_GET["debat"])) {
   header('Location: accueil.php');
 }
 
+
+// ON SAUVEGARDE LES MESSAGES DANS SESSION PUIS ON LA SUPPRIME
+// pour éviter qu'ils soient réutilisés pour aucune raison plus tard
+if (isset($_SESSION["successReponse"])) {
+  $msgReponseOK = $_SESSION["successReponse"];
+  unset($_SESSION["successReponse"]);
+} elseif (isset($_SESSION["erreurReponse"])) {
+  $msgError = $_SESSION["erreurReponse"];
+  unset($_SESSION["erreurReponse"]);
+  echo $msgError;
+}
+
 include 'menu.php';
 ?>
 
@@ -61,14 +73,38 @@ include 'menu.php';
   </div>
 
   <main role="main" class="container">
+
+    <!-- MESSAGE APRÈS AJOUT DE REPONSE -->
+    <?php if (isset($msgReponseOK)){ ?>
+      <div class="alert alert-success alert-dismissible fade show alerteaccueil" role="alert">
+        <strong>Envoi effectué avec succès</strong> <br>
+        <?php echo $msgReponseOK; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <!-- MESSAGE APRÈS ECHEC D'ENVOI DE RÉPONSE -->
+    <?php } elseif (isset($msgError)) { ?>
+      <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
+        <strong>Envoi du message echoué</strong> <br>
+        <?php echo $msgError; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php } ?>
+
     <div class="row">
       <div class="col-12 col-md-4">
 
         <div class="my-3 p-3 bg-reponse rounded shadow-sm">
           <h6 class="border-bottom border-gray pb-2 mb-0">Ecrire une réponse</h6>
-          <form>
+          <form action="../control/ajoutMessage.php" method="post">
+            <input type="hidden" name="categorie" value=<?php echo $_GET["categorie"]; ?>>
+            <input type="hidden" name="titreDeb" <?php echo 'value="'.$_GET["debat"].'"'; ?>>
             <div class="form-group">
-              <textarea autofocus class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Prenez part au débat, exprimez vous, apportez des idées..." required></textarea>
+              <textarea name="reponse" autofocus class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Prenez part au débat, exprimez vous, apportez des idées..." title="Votre réponse doit contenir au minimum 10 caractères" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Envoyer</button>
           </form>

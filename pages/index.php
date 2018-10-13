@@ -1,6 +1,10 @@
 <?php
 if (!session_id()) @ session_start();
 if (isset($_SESSION["pseudo"])) unset($_SESSION["pseudo"]);
+
+
+// ON SAUVEGARDE LES MESSAGES DANS SESSION PUIS ON LA SUPPRIME
+// pour éviter qu'ils soient réutilisés pour aucune raison plus tard
 if (isset($_SESSION["erreur"])) {
   $msgError = $_SESSION["erreur"];
   unset($_SESSION["erreur"]);
