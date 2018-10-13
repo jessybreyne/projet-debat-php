@@ -66,7 +66,8 @@ function getInfosDebat($database,$idDeb){
 // Savoir si un utilisateur à le droit de continuer sur le site en fonction de l'ouverture du système
 function peutContinuer($database,$pseudo,$systemeEstOuvert){
   $infosUser = getInfosUser($database,$pseudo);
-  return $systemeEstOuvert AND $infosUser["estAdmin"];
+  if ($systemeEstOuvert) return true;
+  return $infosUser["estAdmin"];
 }
 
 // Connaître la date de dernière activité d'un Debat dont on connaît le titre

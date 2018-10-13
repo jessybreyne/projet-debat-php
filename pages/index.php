@@ -10,9 +10,10 @@ if (isset($_SESSION["erreur"])) {
   unset($_SESSION["erreur"]);
 }
 
+// WARNING:
 // POSSIBILITÉ DE BLOQUER LES UTILISATEURS NON-ADMIN
 // mettre à true pour désactiver
-$_SESSION["SystemeOuvert"] = false;
+$_SESSION["SystemeOuvert"] = true;
 
 ?>
 

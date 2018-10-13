@@ -1,5 +1,7 @@
 <?php
 
+if (!session_id()) @ session_start();
+
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
 
@@ -35,6 +37,8 @@ echo "<br>";
 echo "<br><br><br><br>TEST date()<br>";
 print_r(date("d/m/Y H:i:s"));
 
-echo "<br><br><br><br>TEST listeCateg()<br>";
+echo "<br><br><br><br>TEST fermeture du site aux non-admin<br>";
+if (peutContinuer($database,"admin",$_SESSION["SystemeOuvert"])) echo "Le site est ouvert aux administrateurs.";
+if (!peutContinuer($database,"Mathieu",$_SESSION["SystemeOuvert"])) echo "Le site est fermé aux non-admin.";
 echo "<br>";
  ?>
