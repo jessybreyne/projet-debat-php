@@ -63,6 +63,12 @@ function getInfosDebat($database,$idDeb){
   return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne la première ligne
 }
 
+// Savoir si un utilisateur à le droit de continuer sur le site en fonction de l'ouverture du système
+function peutContinuer($database,$pseudo,$systemeEstOuvert){
+  $infosUser = getInfosUser($database,$pseudo);
+  return $systemeEstOuvert AND $infosUser["estAdmin"]; {
+}
+
 // Connaître la date de dernière activité d'un Debat dont on connaît le titre
 function derniereActivite($database,$titreDeb){
   if (count(listeMessages($database,$titreDeb)) == 0){ // Aucun message dans le débat

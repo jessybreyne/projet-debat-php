@@ -9,6 +9,11 @@ if (isset($_SESSION["erreur"])) {
   $msgError = $_SESSION["erreur"];
   unset($_SESSION["erreur"]);
 }
+
+// POSSIBILITÉ DE BLOQUER LES UTILISATEURS NON-ADMIN
+// mettre à true pour désactiver
+$_SESSION["SystemeOuvert"] = false;
+
 ?>
 
 <!doctype html>
