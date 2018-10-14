@@ -109,7 +109,7 @@ include 'menu.php';
             <button type="submit" class="btn btn-primary">Envoyer</button>
           </form>
         </div>
-
+        <button type="button" class="btn btn-outline-success btn-lg btn-block">Suivre ce débat</button>
       </div>
       <div class="col-12 col-md-8">
         <!-- LES MESSAGES -->
