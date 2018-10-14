@@ -41,6 +41,14 @@ $database = launchPDO("../bd/data");
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0"><strong>Préférences</strong></h6>
+      <form class="form-inline">
+  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Site ouvert aux non-admin</label>
+  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+    <option value="1">Oui</option>
+    <option value="2">Non</option>
+</select>
+  <button type="submit" class="btn btn-primary my-1">Enregistrer</button>
+</form>
     </div>
 </main>
 
