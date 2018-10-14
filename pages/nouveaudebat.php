@@ -78,8 +78,7 @@ if (isset($_SESSION["erreur"])) {
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Catégorie</label>
                     <select name="Categorie" class="form-control" id="exampleFormControlSelect1">
-                      <?php foreach (listeCateg($database) as $categ) {
-                        $nomCateg = $categ["nomCateg"];
+                      <?php foreach (listeCateg($database) as $nomCateg) {
                         echo "<option value=$nomCateg>$nomCateg</option>";
                       } ?>
                     </select>
