@@ -192,6 +192,9 @@ $_SESSION["SystemeOuvert"] = true;
 
       </div>
     </main>
+    <?php
+include 'footer.php';
+?>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->

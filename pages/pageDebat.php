@@ -175,6 +175,9 @@ include 'menu.php';
 
 
   </main>
+  <?php
+include 'footer.php';
+?>
 
   <!-- Bootstrap core JavaScript
   ================================================== -->

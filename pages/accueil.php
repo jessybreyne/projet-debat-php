@@ -136,6 +136,9 @@ require_once 'menu.php';
       ?>
     </div>
 </main>
+<?php
+include 'footer.php';
+?>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->

@@ -112,6 +112,9 @@
   </nav>
 
 </main>
+<?php
+include 'footer.php';
+?>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->

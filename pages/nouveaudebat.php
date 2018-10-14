@@ -125,6 +125,9 @@ if (isset($_SESSION["erreur"])) {
         </div>
       </div>
     </main>
+    <?php
+include 'footer.php';
+?>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

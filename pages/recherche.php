@@ -120,6 +120,9 @@ $database = launchPDO("../bd/data");
   </nav>
 
 </main>
+<?php
+include 'footer.php';
+?>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->

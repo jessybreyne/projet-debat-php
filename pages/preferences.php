@@ -76,6 +76,9 @@ $database = launchPDO("../bd/data");
 </form>
     </div>
 </main>
+<?php
+include 'footer.php';
+?>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->
