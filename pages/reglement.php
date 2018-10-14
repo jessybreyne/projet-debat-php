@@ -7,7 +7,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../img/favicon.ico">
 
-  <title>Debat - Conditions d'utilisation</title>
+  <title>Debat - Règlement</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,13 +24,13 @@
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="#">Conditions</a>
+      <a class="nav-link" href="#">Règlement</a>
     </nav>
   </div>
 
   <main role="main" class="container">
   <?php
-  include 'conditions.html';
+  include 'reglement.html';
   ?>
 </main>
 <?php
