@@ -34,7 +34,7 @@ $database = launchPDO("../bd/data");
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
       <a class="nav-link" href="accueil.php">Revenir à l'accueil</a>
-      <a class="nav-link" href="#">Règlement</a>
+      <a class="nav-link" href="reglement.php">Règlement</a>
       <a class="nav-link" href="conditionsutilisation.php">Conditions d'utilisation</a>
       <a class="nav-link" data-toggle="collapse" href="#collapseTri" role="button" aria-expanded="false" aria-controls="collapseTri">Paramétrage du tri</a>
     </nav>

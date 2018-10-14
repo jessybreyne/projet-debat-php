@@ -32,7 +32,7 @@ $database = launchPDO("../bd/data");
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="#">Règlement</a>
+      <a class="nav-link" href="reglement.php">Règlement</a>
       <a class="nav-link" href="conditionsutilisation.php">Conditions d'utilisation</a>
     </nav>
   </div>
