@@ -10,10 +10,19 @@ if (isset($_SESSION["erreur"])) {
   unset($_SESSION["erreur"]);
 }
 
+$fic = fopen('../txt/bool.txt', 'r+');
+$bool = fgets($fic);
+
+
 // WARNING:
 // POSSIBILITÉ DE BLOQUER LES UTILISATEURS NON-ADMIN
 // mettre à true pour désactiver
-$_SESSION["SystemeOuvert"] = true;
+$_SESSION["SystemeOuvert"] = (int)$bool;
+
+
+
+
+
 
 ?>
 

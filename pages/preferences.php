@@ -1,6 +1,7 @@
 <?php
-include 'menu.php';
+if (!session_id()) @ session_start();
 
+include 'menu.php';
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
@@ -42,20 +43,38 @@ $database = launchPDO("../bd/data");
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0"><strong>Préférences</strong></h6>
       <br>
+
+      <?php
+      
+      $fic = fopen('../txt/bool.txt', 'r+');
+      $bool = fgets($fic);
+      if($bool=="1"){
+        $message="Le site est ouvert.";
+      }else{
+        $message="Le site est fermé.";
+      }
+
+      if(estAdmin($database,$_SESSION["pseudo"])){
+        echo '
+      
+
       <h6><strong>Maintenance</strong></h6>
-      <form>
+      <p>'.$message.'</p>
+      <form action="../control/changeEtatSite.php" method="post">
         <div class="form-group row">
         <label class="col-sm-4 col-form-label" for="inlineFormCustomSelectPref">Site ouvert aux non-admin</label>
         <div class="col-sm-8">
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+          <select class="custom-select my-1 mr-sm-2" name="maintenance">
           <option value="1">Oui</option>
           <option value="2">Non</option>
         </select>
       </div>
       </div>
-        <button type="submit" class="btn btn-primary my-1">Confirmer l'état de la maintenance</button>
+        <button type="submit" class="btn btn-primary my-1">Confirmer l\'état de la maintenance</button>
       </form>
-      <br>
+      <br>';
+    }
+    ?>
       <h6><strong>Changer de mot de passe</strong></h6>
       <form>
         <div class="form-group row">
