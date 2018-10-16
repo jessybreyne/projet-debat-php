@@ -67,6 +67,19 @@ $_SESSION["SystemeOuvert"] = (int)$bool;
       </div>
       <div class="row block">
       </div>
+      <?php
+      $fic = fopen('../txt/bool.txt', 'r+');
+      $bool = fgets($fic);
+      if($bool=="0"){
+        echo '<div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
+        <strong>Le site est en maintenance.</strong> <br>
+        <?php echo $msgError; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+      }
+      ?>
 
       <!-- MESSAGE D'ERREUR -->
       <?php if (isset($msgError)) { ?>
