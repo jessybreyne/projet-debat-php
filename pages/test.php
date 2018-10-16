@@ -50,4 +50,8 @@ if (!suitDebat($database,"admin","Les cookies, inoffensifs ou danger pour la vie
 }
 echo "<br>";
 
+echo "<br><br><br><br>TEST recherches<br>Je cherche un débat avec le mot 'danger' : <br>";
+print_r(listeDebatsString($database,"danger"));
+echo "<br>";
+
  ?>

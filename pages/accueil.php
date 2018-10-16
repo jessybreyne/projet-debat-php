@@ -20,7 +20,6 @@ if (isset($_SESSION["successIns"])){
 } elseif (isset($_SESSION["erreurDebat"])) {
   $msgError = $_SESSION["erreurDebat"];
   unset($_SESSION["erreurDebat"]);
-  echo $msgError;
 }
 
 if (!isset($_SESSION["pseudo"])) header('Location: index.php');

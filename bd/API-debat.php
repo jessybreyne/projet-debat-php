@@ -258,6 +258,17 @@ function listeDebatsCateg($database,$nomCateg){
   return getArray($stmt);
 }
 
+// Récupérer la liste des débats qui contiennent une chaine (pour les recherches)
+function listeDebatsString($database,$string){
+  $lesDeb = "SELECT idDebat,nomCateg,titre,idCreateur from CATEGORIE natural join DEBAT where titre LIKE :str";
+  $stmt = $database->prepare($lesDeb);
+  $str = "%{$string}%";
+  $stmt->bindParam(':str',$str);
+  $stmt->execute();
+
+  return getArray($stmt);
+}
+
 // Récupérer les noms des catégories dans le résultat de la requête
 function nomsCateg($query){
   $res = array();
