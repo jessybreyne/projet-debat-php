@@ -44,7 +44,19 @@ $database = launchPDO("../bd/data");
       <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">Pseudo</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pseudo">
+    </div>
+    <label for="staticEmail" class="col-sm-2 col-form-label">Est admin?</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Oui">
+    </div>
+    <label for="staticEmail" class="col-sm-2 col-form-label">Nombre de debat</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="42">
+    </div>
+    <label for="staticEmail" class="col-sm-2 col-form-label">Nombre de réponses</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="122">
     </div>
   </div>
     </div>
