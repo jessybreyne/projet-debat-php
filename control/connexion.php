@@ -19,16 +19,12 @@ function filtrerForm(){
 if (!formEstRempli()){ // On s'assure que tout est bien rempli
   $_SESSION["erreur"] = "Veuillez compléter les champs indiqués !";
 
-  // Fermeture de la connexion
-  $database = null;
   header('Location: index.php');
 } else {
   filtrerForm();
   if (!pseudoExiste($database,$_POST["pseudo"])){
     $_SESSION["erreur"] = "Ce pseudo n'existe pas !";
 
-    // Fermeture de la connexion
-    $database = null;
     header('Location: ../pages/index.php');
   } else {
     $mdpPost = hashMDP($_POST["pwd"]);
@@ -38,14 +34,10 @@ if (!formEstRempli()){ // On s'assure que tout est bien rempli
       $_SESSION["pseudo"] = $_POST["pseudo"];
       $_SESSION["successCo"] = "Bon retour sur la plateforme, {$_SESSION["pseudo"]} !";
 
-      // Fermeture de la connexion
-      $database = null;
       header('Location: ../pages/accueil.php');
     } else {
       $_SESSION["erreur"] = "Mauvais mot de passe !";
 
-      // Fermeture de la connexion
-      $database = null;
       header('Location: ../pages/index.php');
     }
   }

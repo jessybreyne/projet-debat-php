@@ -136,6 +136,18 @@ function newUser($database,$pseudo,$mdpBrut){
   $stmt->execute();
 }
 
+// Changer le mot de passe d'un utilisateur
+function changeMDP($database,$pseudo,$newMDPBrut){
+  $update = "UPDATE UTILISATEUR SET mdpHash=:mdpHash where pseudo=:pseudo";
+  $stmt = $database->prepare($update);
+
+  $hash = hashMDP($newMDPBrut);
+
+  $stmt->bindParam(':mdpHash',$hash);
+  $stmt->bindParam(':pseudo',$pseudo);
+  $stmt->execute();
+}
+
 // Connaître le nombre de messages dans un débat (dont on connait le titre)
 function nbMessages($database,$titreDeb){
   $lesMess = "SELECT count(*) as nbMess from DEBAT natural join MESSAGE where idDebat=:idDebat group by idDebat";
