@@ -106,7 +106,7 @@ require_once 'menu.php';
 
     <!-- MESSAGE D'ERREUR -->
     <?php if (isset($msgError)) { ?>
-      <div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show alerteaccueil" role="alert">
         <strong>Oups... Erreur 404</strong> <br>
         <?php echo $msgError; ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
