@@ -40,23 +40,20 @@ $database = launchPDO("../bd/data");
   <main role="main" class="container">
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Profil de <strong><?php echo "Pseudo"; ?></strong></h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0">Profil de <strong><?php echo $_SESSION["pseudo"]; ?></strong></h6>
       <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">Pseudo</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pseudo">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $_SESSION["pseudo"]; ?>">
     </div>
     <label for="staticEmail" class="col-sm-2 col-form-label">Est admin?</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Oui">
-    </div>
-    <label for="staticEmail" class="col-sm-2 col-form-label">Nombre de debat</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="42">
-    </div>
-    <label for="staticEmail" class="col-sm-2 col-form-label">Nombre de réponses</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="122">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php
+      if(estAdmin($database,$_SESSION["pseudo"])){
+        echo 'Oui';
+      }else{
+        echo 'Non';
+      }?>">
     </div>
   </div>
     </div>
