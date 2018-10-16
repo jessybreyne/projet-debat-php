@@ -19,10 +19,10 @@ fputs($fic, $bool); // On écrit
 // 3 : fermeture du fichier
 fclose($fic);
 
-$etat = array("ON" => "activé" , "OFF" => "désactivé");
+$etat = array("ON" => "ouvert" , "OFF" => "fermé");
 
 // 4 : on crée un message de succès
-$_SESSION["change"] = "L'état de maintenance a bien été {$etat[$_POST["maintenance"]]} !";
+$_SESSION["change"] = "Le site a bien été {$etat[$_POST["maintenance"]]} aux utilisateurs non-admin !";
 
 header('Location: ../pages/preferences.php');
 ?>

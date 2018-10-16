@@ -62,7 +62,7 @@ include 'menu.php';
         ?>
         <h6 class="border-bottom border-gray pb-2 mb-0">Actuellement, vous ne suivez aucun débat !<br> <a href="accueil.php">Partez à la découverte</a> des catégories existantes et de leurs débats, ou <a href="nouveaudebat.php">créez un nouveau débat</a> !</h6>
       <?php } else { ?>
-      <h6 class="border-bottom border-gray pb-2 mb-0"><?php echo count($listeDebats)." débats suivis :"; ?></h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0"><?php echo "Débats suivis : ".count($listeDebats); ?></h6>
       <?php afficheDebats($database,$listeDebats); } ?>
 
     </div>

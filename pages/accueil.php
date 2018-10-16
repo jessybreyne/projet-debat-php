@@ -128,7 +128,7 @@ require_once 'menu.php';
         echo strtolower($nomCateg);
         echo '.png" alt="';
         echo $nomCateg;
-        echo '" height="100%" width="100%">';
+        echo '" height=auto width="100%">';
         echo '</a>';
         echo '</div>';
       }

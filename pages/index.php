@@ -1,4 +1,5 @@
 <?php
+if (isset($_SESSION)) session_destroy();
 if (!session_id()) @ session_start();
 if (isset($_SESSION["pseudo"])) unset($_SESSION["pseudo"]);
 
@@ -126,7 +127,7 @@ $_SESSION["SystemeOuvert"] = (int)$bool;
                     </a>                  </div>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                    <input name="conditionsOK" class="form-check-input" type="checkbox" id="gridCheck1">
                     <label class="form-check-label" for="gridCheck1">
                       J'accepte les conditions d'utilisation
                     </label>
