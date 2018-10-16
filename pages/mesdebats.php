@@ -63,25 +63,8 @@ include 'menu.php';
         <h6 class="border-bottom border-gray pb-2 mb-0">Actuellement, vous ne suivez aucun débat !<br> <a href="accueil.php">Partez à la découverte</a> des catégories existantes et de leurs débats, ou <a href="nouveaudebat.php">créez un nouveau débat</a> !</h6>
       <?php } else { ?>
       <h6 class="border-bottom border-gray pb-2 mb-0"><?php echo count($listeDebats)." débats suivis :"; ?></h6>
-      <?php
-      }
-      foreach ($listeDebats as $debat){ ?>
-        <a href="pageDebat.php?<?php echo "categorie={$debat["nomCateg"]}&debat={$debat["titre"]}"; ?>">
-          <div class="media text-muted pt-3">
-            <img src=<?php echo "../img/icon/".strtolower($debat["nomCateg"]).".png"; ?> alt=<?php echo $debat["nomCateg"]; ?> class="iconCateg">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <strong class="d-block text-gray-dark"><?php echo $debat["titre"]; ?></strong>
-              <?php
-              $infosCreateur = getInfosUserID($database,$debat["idCreateur"]);
-              echo "Créateur : ".$infosCreateur["pseudo"];
-              echo " | Dernière activité : ";
-              print_r(derniereActivite($database,$debat["titre"]));
+      <?php afficheDebats($database,$listeDebats); } ?>
 
-              ?>
-            </p>
-          </div>
-        </a>
-      <?php } ?>
     </div>
 
 

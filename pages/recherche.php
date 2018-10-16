@@ -7,8 +7,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
 include 'menu.php';
 
-
-$_GET["recherche"] = htmlspecialchars($_GET["recherche"]);
+if (isset($_POST["recherche"])) $_POST["recherche"] = htmlspecialchars($_POST["recherche"]);
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
@@ -52,25 +51,11 @@ $database = launchPDO("../bd/data");
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <?php
-      $listeDebCateg = listeDebatsCateg($database,$_GET["categorie"]);
+      $listeDebCateg = listeDebatsString($database,$_POST["recherche"]);
       ?>
       <h6 class="border-bottom border-gray pb-2 mb-0"><strong><?php echo count($listeDebCateg); ?></strong> résultats de recherche</h6>
 
-      <?php foreach ($listeDebCateg as $debat) { ?>
-      <div class="media text-muted pt-3">
-        <img src=<?php echo "../img/icon/".strtolower($_GET["categorie"]).".png"; ?> alt=<?php echo $_GET["categorie"]; ?> class="iconCateg">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark"><?php echo $debat["titre"]; ?></strong>
-          <?php
-          $infosCreateur = getInfosUserID($database,$debat["idCreateur"]);
-          echo "Créateur : ".$infosCreateur["pseudo"];
-          echo " | Dernière activité : ";
-          print_r(derniereActivite($database,$debat["titre"]));
-
-           ?>
-        </p>
-      </div>
-      <?php } ?>
+      <?php afficheDebats($database,$listeDebCateg); ?>
     </div>
 
 

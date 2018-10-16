@@ -68,7 +68,7 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
     </div>
   </li>
 </ul>
-<form action="recherche.php" class="form-inline my-2 my-md-0">
+<form action="recherche.php" class="form-inline my-2 my-md-0" method="post">
   <div class="input-group">
     <input required name="recherche" type="text" class="form-control mr-sm bug" placeholder="" aria-label="" aria-describedby="basic-addon1">
     <div class="input-group-append">

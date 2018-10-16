@@ -286,6 +286,27 @@ function listeCateg($database){
   return nomsCateg($query);
 }
 
+// Afficher une liste de débats
+function afficheDebats($database,$listeDebats){
+  foreach ($listeDebats as $debat){ ?>
+    <a href="pageDebat.php?<?php echo "categorie={$debat["nomCateg"]}&debat={$debat["titre"]}"; ?>">
+      <div class="media text-muted pt-3">
+        <img src=<?php echo "../img/icon/".strtolower($debat["nomCateg"]).".png"; ?> alt=<?php echo $debat["nomCateg"]; ?> class="iconCateg">
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong class="d-block text-gray-dark"><?php echo $debat["titre"]; ?></strong>
+          <?php
+          $infosCreateur = getInfosUserID($database,$debat["idCreateur"]);
+          echo "Créateur : ".$infosCreateur["pseudo"];
+          echo " | Dernière activité : ";
+          print_r(derniereActivite($database,$debat["titre"]));
+
+          ?>
+        </p>
+      </div>
+    </a>
+  <?php }
+}
+
 
 // Fermeture de la connexion
 // $database = null;

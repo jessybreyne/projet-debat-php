@@ -10,18 +10,13 @@ if (isset($_SESSION["erreur"])) {
   unset($_SESSION["erreur"]);
 }
 
-$fic = fopen('../txt/bool.txt', 'r+');
-$bool = fgets($fic);
-
 
 // WARNING:
 // POSSIBILITÉ DE BLOQUER LES UTILISATEURS NON-ADMIN
-// mettre à true pour désactiver
 $_SESSION["SystemeOuvert"] = (int)$bool;
 
-
-
-
+$fic = fopen('../txt/bool.txt', 'r+');
+$bool = fgets($fic);
 
 
 ?>
@@ -67,19 +62,19 @@ $_SESSION["SystemeOuvert"] = (int)$bool;
       </div>
       <div class="row block">
       </div>
+
+      <!-- MESSAGE ALERTE POUR MAINTENANCE -->
       <?php
       $fic = fopen('../txt/bool.txt', 'r+');
       $bool = fgets($fic);
       if($bool=="0"){
         echo '<div class="alert alert-danger alert-dismissible fade show alerteindex" role="alert">
-        <strong>Le site est en maintenance.</strong> <br>
-        <?php echo $msgError; ?>
+        <strong>Le site est actuellement en maintenance. Revenez dans quelques instants.</strong> <br>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>';
-      }
-      ?>
+      }  ?>
 
       <!-- MESSAGE D'ERREUR -->
       <?php if (isset($msgError)) { ?>
