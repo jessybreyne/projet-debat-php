@@ -189,6 +189,12 @@ function newSuivi($database,$pseudo,$titreDeb){
   $stmt->execute();
 }
 
+// Savoir si un utilisateur est admin
+function estAdmin($database,$pseudo){
+  $infosUser = getInfosUser($database,$pseudo);
+  return $infosUser["estAdmin"];
+}
+
 // Initier un débat (automatiquement, le créateur suit son débat)
 // par un utilisateur dont on connait le pseudo
 // dans une catégorie dont on connait le nom
