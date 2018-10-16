@@ -109,7 +109,21 @@ include 'menu.php';
             <button type="submit" class="btn btn-primary">Envoyer</button>
           </form>
         </div>
-        <button type="button" class="btn btn-outline-success btn-lg btn-block">Suivre ce débat</button>
+        <?php if (!suitDebat($database,$_SESSION["pseudo"],$_GET["debat"])) { ?>
+        <form action="../control/suiviDebat.php" method="post">
+          <input type="hidden" name="action" value="ON">
+          <input type="hidden" name="debat" <?php echo 'value="'.$_GET["debat"].'"'; ?>>
+          <input type="hidden" name="categorie" value=<?php echo $_GET["categorie"]; ?>>
+          <button type="submit"  class="btn btn-outline-success btn-lg btn-block">Suivre ce débat</button>
+        </form>
+      <?php } else { ?>
+        <form action="../control/suiviDebat.php" method="post">
+          <input type="hidden" name="action" value="OFF">
+          <input type="hidden" name="debat" <?php echo 'value="'.$_GET["debat"].'"'; ?>>
+          <input type="hidden" name="categorie" value=<?php echo $_GET["categorie"]; ?>>
+          <button type="submit"  class="btn btn-outline-danger btn-lg btn-block">Ne plus suivre ce débat</button>
+        </form>
+      <?php } ?>
       </div>
       <div class="col-12 col-md-8">
         <!-- LES MESSAGES -->

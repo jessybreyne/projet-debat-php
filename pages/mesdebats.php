@@ -1,3 +1,17 @@
+<?php
+if (!session_id()) @ session_start();
+
+// IMPORTATION DES FONCTIONS DE L'API PHP-BD
+require_once("../bd/API-debat.php");
+
+// Démarrer la connexion
+$database = launchPDO("../bd/data");
+
+include 'menu.php';
+
+
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -17,10 +31,6 @@
 </head>
 
 <body class="bg-light">
-
-  <?php
-  include 'menu.php';
-  ?>
 
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
@@ -64,66 +74,70 @@
   <main role="main" class="container">
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Liste de mes débats</h6>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">Titre du débat</strong>
-          10/10/2018 | Auteur
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Titre du débat</strong>
-        10/10/2018 | Auteur
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Titre du débat</strong>
-        10/10/2018 | Auteur
-        </p>
-      </div>
+      <?php
+      $listeDebats = listeDebatsUser($database,$_SESSION["pseudo"]);
+      if (count($listeDebats) == 0){
+        ?>
+        <h6 class="border-bottom border-gray pb-2 mb-0">Actuellement, vous ne suivez aucun débat !<br> <a href="accueil.php">Partez à la découverte</a> des catégories existantes et de leurs débats, ou <a href="nouveaudebat.php">créez un nouveau débat</a> !</h6>
+      <?php } else { ?>
+      <h6 class="border-bottom border-gray pb-2 mb-0"><?php echo count($listeDebats)." débats suivis :"; ?></h6>
+      <?php
+      }
+      foreach ($listeDebats as $debat){ ?>
+        <a href="pageDebat.php?<?php echo "categorie={$debat["nomCateg"]}&debat={$debat["titre"]}"; ?>">
+          <div class="media text-muted pt-3">
+            <img src=<?php echo "../img/icon/".strtolower($debat["nomCateg"]).".png"; ?> alt=<?php echo $debat["nomCateg"]; ?> class="iconCateg">
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <strong class="d-block text-gray-dark"><?php echo $debat["titre"]; ?></strong>
+              <?php
+              $infosCreateur = getInfosUserID($database,$debat["idCreateur"]);
+              echo "Créateur : ".$infosCreateur["pseudo"];
+              echo " | Dernière activité : ";
+              print_r(derniereActivite($database,$debat["titre"]));
+
+              ?>
+            </p>
+          </div>
+        </a>
+      <?php } ?>
     </div>
 
 
     <nav aria-label="..." class="pagination justify-content-center">
       <ul class="pagination">
-       <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item active">
-        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active">
+          <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-</main>
-<?php
-include 'footer.php';
-?>
+  </main>
+  <?php
+  include 'footer.php';
+  ?>
 
-    <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="../dist/js/jquery-3.2.1.slim.min.js"></script>
-      <script>window.jQuery || document.write('<script src="../dist/js/jquery-slim.min.js"><\/script>')</script>
-      <script src="../dist/js/popper.min.js"></script>
-      <script src="../dist/js/bootstrap.min.js"></script>
-      <script src="../dist/js/holder.min.js"></script>
-      <script src="../js/categorie.js"></script>
-    </body>
-    </html>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../dist/js/jquery-3.2.1.slim.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../dist/js/jquery-slim.min.js"><\/script>')</script>
+  <script src="../dist/js/popper.min.js"></script>
+  <script src="../dist/js/bootstrap.min.js"></script>
+  <script src="../dist/js/holder.min.js"></script>
+  <script src="../js/categorie.js"></script>
+</body>
+</html>

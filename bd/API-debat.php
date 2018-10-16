@@ -189,10 +189,33 @@ function newSuivi($database,$pseudo,$titreDeb){
   $stmt->execute();
 }
 
+// Supprimer un suivi
+function deleteSuivi($database,$pseudo,$titreDeb){
+  $delete="DELETE FROM SUIVRE WHERE idDebat=:idDebat and idUser=:idUser";
+  $stmt = $database->prepare($delete);
+  $debatID = getDebatID($database,$titreDeb);
+  $userID = getUserID($database,$pseudo);
+  $stmt->bindParam(':idDebat',$debatID);
+  $stmt->bindParam(':idUser',$userID);
+  $stmt->execute();
+}
+
 // Savoir si un utilisateur est admin
 function estAdmin($database,$pseudo){
   $infosUser = getInfosUser($database,$pseudo);
   return $infosUser["estAdmin"];
+}
+
+// Savoir si un utilisateur suit un débat
+function suitDebat($database,$pseudo,$titreDeb){
+  $debat = "SELECT pseudo from UTILISATEUR natural join SUIVRE where idDebat=:idDebat and pseudo=:pseudo";
+  $stmt = $database->prepare($debat);
+
+  $idDeb = getDebatID($database,$titreDeb);
+  $stmt->bindParam(':idDebat',$idDeb);
+  $stmt->bindParam(':pseudo',$pseudo);
+  $stmt->execute();
+  return count(getArray($stmt)) > 0;
 }
 
 // Initier un débat (automatiquement, le créateur suit son débat)

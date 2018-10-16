@@ -20,3 +20,7 @@ insert into DEBAT values (2,1,"Informatique","Les cookies, inoffensifs ou danger
 
 insert into MESSAGE values (1,1,1,"Je pense que NON !",strftime('%d/%m/%Y %H:%M:%S','now','localtime'));
 insert into MESSAGE values (1,2,1,"En fait, SI !",strftime('%d/%m/%Y %H:%M:%S','now','localtime'));
+
+-- SUIVRE
+
+insert into SUIVRE values (1,1);
