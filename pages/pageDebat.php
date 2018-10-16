@@ -53,7 +53,7 @@ include 'menu.php';
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../img/favicon.ico">
-  <title>Debat - </title>
+  <title>Debat - <?php echo $_GET["debat"]; ?></title>
 
   <!-- Bootstrap core CSS -->
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">

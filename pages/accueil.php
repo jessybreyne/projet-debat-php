@@ -51,7 +51,7 @@ require_once 'menu.php';
   <meta name="author" content="">
   <link rel="icon" href="../img/favicon.ico">
 
-  <title>Debat - </title>
+  <title>Debat - Accueil</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">

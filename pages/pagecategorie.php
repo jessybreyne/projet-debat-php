@@ -20,7 +20,7 @@ $database = launchPDO("../bd/data");
   <meta name="author" content="">
   <link rel="icon" href="../img/favicon.ico">
 
-  <title>Debat - </title>
+  <title>Debat - Catégorie <?php echo $_GET["categorie"]; ?></title>
 
   <!-- Bootstrap core CSS -->
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">

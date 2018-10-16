@@ -7,7 +7,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../img/favicon.ico">
 
-  <title>Debat - </title>
+  <title>Debat - Mes débats</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
