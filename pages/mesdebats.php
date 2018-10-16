@@ -41,24 +41,6 @@ include 'menu.php';
     <div class="collapse" id="collapseTri">
       <div class="card card-body">
         <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par nombre de message dans les débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-        <form class="form-inline">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par nombre de message dans les débats</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choisir...</option>
-            <option value="1">Ordre croissant</option>
-            <option value="2">Ordre décroissant</option>
-          </select>
-          <button type="submit" class="btn btn-primary my-1">Valider</button>
-        </form>
-        <form class="form-inline">
           <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par date des débats</label>
           <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
             <option selected>Choisir...</option>
@@ -103,27 +85,6 @@ include 'menu.php';
     </div>
 
 
-    <nav aria-label="..." class="pagination justify-content-center">
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-          <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
 
   </main>
   <?php
