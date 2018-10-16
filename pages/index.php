@@ -189,12 +189,28 @@ $_SESSION["SystemeOuvert"] = true;
             </a>
           </div>
         </div>
-
       </div>
     </main>
-    <?php
-include 'footer.php';
-?>
+    <footer class="page-footer font-small special-color-dark pt-4">
+    <div class="footer-copyright text-center py-3">
+      <a data-toggle="collapse" href="#condition2" role="button" aria-expanded="false" aria-controls="condition2"
+>Conditions d'utilisation </a>
+      | © 2018 Copyright:
+      <a href="#"> Debat.org</a>
+    </div>
+</footer>
+<div class="collapse" id="condition2">
+                  <div class="card card-body cardc">
+                    <a class="btn btn-danger" data-toggle="collapse" href="#condition2" role="button" aria-expanded="false" aria-controls="condition2">
+                      Fermer
+                    </a>
+                    <?php
+                    include 'conditions.html';
+                    ?>
+                    <a class="btn btn-danger" data-toggle="collapse" href="#condition2" role="button" aria-expanded="false" aria-controls="condition2">
+                      Fermer
+                    </a>                  </div>
+                  </div>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->
