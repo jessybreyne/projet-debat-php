@@ -43,8 +43,21 @@ $database = launchPDO("../bd/data");
       <a class="nav-link" href="reglement.php">Règlement</a>
       <a class="nav-link" href="conditionsutilisation.php">Conditions d'utilisation</a>
       <a class="nav-link" data-toggle="collapse" href="#collapseTri" role="button" aria-expanded="false" aria-controls="collapseTri">Paramétrage du tri</a>
+      
     </nav>
-
+    <div class="collapse" id="collapseTri">
+      <div class="card card-body">
+        <form class="form-inline">
+          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tri par date des débats</label>
+          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+            <option selected>Choisir...</option>
+            <option value="1">Ordre croissant</option>
+            <option value="2">Ordre décroissant</option>
+          </select>
+          <button type="submit" class="btn btn-primary my-1">Valider</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <main role="main" class="container">
