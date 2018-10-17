@@ -9,7 +9,7 @@ require_once("../bd/API-debat.php");
 $database = launchPDO("../bd/data");
 
 
-if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) header('Location: index.php');
+if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) header('Location: index.php');
 
 
 $_POST["titre"] = htmlspecialchars($_POST["titre"]);

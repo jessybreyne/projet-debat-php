@@ -64,9 +64,13 @@ function getInfosDebat($database,$idDeb){
 }
 
 // Savoir si un utilisateur à le droit de continuer sur le site en fonction de l'ouverture du système
-function peutContinuer($database,$pseudo,$systemeEstOuvert){
-  $infosUser = getInfosUser($database,$pseudo);
+function peutContinuer($database,$pseudo){
+  $fic = fopen('../txt/bool.txt', 'r+');
+  $bool = fgets($fic);
+
+  $systemeEstOuvert = (int)$bool;
   if ($systemeEstOuvert) return true;
+  $infosUser = getInfosUser($database,$pseudo);
   return $infosUser["estAdmin"];
 }
 
