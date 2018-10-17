@@ -2,9 +2,6 @@
 
 if (!session_id()) @ session_start();
 
-if (!isset($_SESSION["pseudo"])) header('Location: index.php');
-
-
 include 'menu.php';
 
 if (isset($_POST["recherche"])){
@@ -47,7 +44,7 @@ $database = launchPDO("../bd/data");
       <a class="nav-link" href="reglement.php">Règlement</a>
       <a class="nav-link" href="conditionsutilisation.php">Conditions d'utilisation</a>
       <a class="nav-link" data-toggle="collapse" href="#collapseTri" role="button" aria-expanded="false" aria-controls="collapseTri">Paramétrage du tri</a>
-      
+
     </nav>
     <div class="collapse" id="collapseTri">
       <div class="card card-body">

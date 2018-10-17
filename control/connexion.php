@@ -20,12 +20,14 @@ if (!formEstRempli()){ // On s'assure que tout est bien rempli
   $_SESSION["erreur"] = "Veuillez compléter les champs indiqués !";
 
   header('Location: index.php');
+  die();
 } else {
   filtrerForm();
   if (!pseudoExiste($database,$_POST["pseudo"])){
     $_SESSION["erreur"] = "Ce pseudo n'existe pas !";
 
     header('Location: ../pages/index.php');
+    die();
   } else {
     $mdpPost = hashMDP($_POST["pwd"]);
     $mdpUser = getInfosUser($database,$_POST["pseudo"])["mdpHash"];
@@ -35,10 +37,12 @@ if (!formEstRempli()){ // On s'assure que tout est bien rempli
       $_SESSION["successCo"] = "Bon retour sur la plateforme, {$_SESSION["pseudo"]} !";
 
       header('Location: ../pages/accueil.php');
+      die();
     } else {
       $_SESSION["erreur"] = "Mauvais mot de passe !";
 
       header('Location: ../pages/index.php');
+      die();
     }
   }
 

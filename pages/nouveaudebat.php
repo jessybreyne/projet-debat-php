@@ -9,7 +9,10 @@ require_once("../bd/API-debat.php");
 $database = launchPDO("../bd/data");
 
 if (!session_id()) @ session_start();
-if (!isset($_SESSION["pseudo"])) header('Location: index.php');
+if (!isset($_SESSION["pseudo"])) {
+  header('Location: index.php');
+  die();
+}
 if (isset($_SESSION["erreur"])) {
   $msgError = $_SESSION["erreur"];
   unset($_SESSION["erreur"]);

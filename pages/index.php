@@ -2,7 +2,10 @@
 
 if (!session_id()) @ session_start();
 
-if (isset($_SESSION["pseudo"])) header('Location: accueil.php');
+if (isset($_SESSION["pseudo"])){
+  header('Location: accueil.php');
+  die();
+}
 
 
 // ON SAUVEGARDE LES MESSAGES DANS SESSION PUIS ON LA SUPPRIME
@@ -11,14 +14,6 @@ if (isset($_SESSION["erreur"])) {
   $msgError = $_SESSION["erreur"];
   unset($_SESSION["erreur"]);
 }
-
-
-$fic = fopen('../txt/bool.txt', 'r+');
-$bool = fgets($fic);
-
-// WARNING:
-// POSSIBILITÉ DE BLOQUER LES UTILISATEURS NON-ADMIN
-$_SESSION["SystemeOuvert"] = (int)$bool;
 
 
 

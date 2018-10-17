@@ -8,7 +8,10 @@ require_once("../bd/API-debat.php");
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
 
-if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) header('Location: index.php');
+if (isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) {
+  header('Location: ../control/deconnexion.php');
+  die();
+}
 
 
 $_POST["reponse"] = htmlspecialchars($_POST["reponse"]);
@@ -21,9 +24,11 @@ if (isset($_POST["titreDeb"])) {
   if (!titreDebExiste($database,$_POST["titreDeb"])) {
     $_SESSION["erreurDebat"] = "Ce débat n'existe pas !";
     header('Location: ../pages/accueil.php');
+    die();
   }
 } else {
   header('Location: ../pages/accueil.php');
+  die();
 }
 
 
@@ -37,5 +42,6 @@ if (strlen($_POST["reponse"]) < 10){
 
 echo "../pages/pageDebat.php?categorie={$_POST["categorie"]}&debat={$_POST["titreDeb"]}";
 header("Location: ../pages/pageDebat.php?categorie={$_POST["categorie"]}&debat={$_POST["titreDeb"]}");
+die();
 
 ?>
