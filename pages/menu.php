@@ -72,7 +72,7 @@ if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"]
     <div class="dropdown-menu" aria-labelledby="dropdown04">
       <a class="dropdown-item" href="profil.php">Profil</a>
       <a class="dropdown-item" href="preferences.php">Préférences</a>
-      <a class="dropdown-item" href="index.php">Se deconnecter</a>
+      <a class="dropdown-item" href="../control/deconnexion.php">Se deconnecter</a>
     </div>
   </li>
 </ul>
