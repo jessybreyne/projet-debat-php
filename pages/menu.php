@@ -1,6 +1,7 @@
 <?php
 if (!session_id()) @ session_start();
-if (!isset($_SESSION["pseudo"])) header('Location: index.php');
+
+if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) header('Location: index.php') header('Location: index.php');
 
  ?>
 

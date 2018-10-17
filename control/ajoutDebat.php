@@ -1,7 +1,8 @@
 <?php
 if (!session_id()) @ session_start();
 
-if (!isset($_SESSION["pseudo"])) header('Location: ../pages/index.php');
+if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) header('Location: index.php') header('Location: index.php');
+
 
 $_POST["titre"] = htmlspecialchars($_POST["titre"]);
 $_POST["contenuMess1"] = htmlspecialchars($_POST["contenuMess1"]);

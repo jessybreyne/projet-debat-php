@@ -24,5 +24,8 @@ $etat = array("ON" => "ouvert" , "OFF" => "fermé");
 // 4 : on crée un message de succès
 $_SESSION["change"] = "Le site a bien été {$etat[$_POST["maintenance"]]} aux utilisateurs non-admin !";
 
+// 5 On sauvegarde le nouvel état du site
+$_SESSION["SystemeOuvert"] = $bool;
+
 header('Location: ../pages/preferences.php');
 ?>
