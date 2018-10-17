@@ -7,7 +7,11 @@ if (!isset($_SESSION["pseudo"])) header('Location: index.php');
 
 include 'menu.php';
 
-if (isset($_POST["recherche"])) $_POST["recherche"] = htmlspecialchars($_POST["recherche"]);
+if (isset($_POST["recherche"])){
+  $_POST["recherche"] = htmlspecialchars($_POST["recherche"]);
+} else{
+  $_POST["recherche"] = "42";
+}
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
