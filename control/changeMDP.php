@@ -8,6 +8,11 @@ require_once("../bd/API-debat.php");
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
 
+if (isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) {
+  header('Location: ../control/deconnexion.php');
+  die();
+}
+
 if ($_POST["pwd1"] != $_POST["pwd2"]) {
   $_SESSION["changeMDPerror"] = "Problème de confirmation du nouveau mot de passe !";
 } else {
@@ -26,5 +31,6 @@ if ($_POST["pwd1"] != $_POST["pwd2"]) {
 }
 
 header('Location: ../pages/preferences.php');
+die();
 
 ?>

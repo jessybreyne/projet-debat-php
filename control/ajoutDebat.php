@@ -9,7 +9,10 @@ require_once("../bd/API-debat.php");
 $database = launchPDO("../bd/data");
 
 
-if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) header('Location: index.php');
+if (isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) {
+  header('Location: ../control/deconnexion.php');
+  die();
+}
 
 
 $_POST["titre"] = htmlspecialchars($_POST["titre"]);
@@ -23,6 +26,7 @@ if (titreDebExiste($database,$_POST["titre"])){
   // Fermeture de la connexion
   $database = null;
   header('Location: ../pages/nouveaudebat.php');
+  die();
 } else {
   // LANCEMENT OK
 
@@ -37,6 +41,7 @@ if (titreDebExiste($database,$_POST["titre"])){
   // Fermeture de la connexion
   $database = null;
   header('Location: ../pages/accueil.php');
+  die();
 }
 
 

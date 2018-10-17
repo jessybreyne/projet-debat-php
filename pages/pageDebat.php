@@ -15,10 +15,12 @@ if (isset($_GET["categorie"])) {
   $_GET["categorie"] = htmlspecialchars($_GET["categorie"]);
   if (!in_array($_GET["categorie"],listeCateg($database))) {
     $_SESSION["erreurDebat"] = "Cette catégorie n'existe pas !";
-    // header('Location: accueil.php');
+    header('Location: accueil.php');
+    die();
   }
 } else {
   header('Location: accueil.php');
+  die();
 }
 
 if (isset($_GET["debat"])) {
@@ -26,9 +28,11 @@ if (isset($_GET["debat"])) {
   if (!titreDebExiste($database,$_GET["debat"])) {
     $_SESSION["erreurDebat"] = "Ce débat n'existe pas !";
     header('Location: accueil.php');
+    die();
   }
 } else {
   header('Location: accueil.php');
+  die();
 }
 
 

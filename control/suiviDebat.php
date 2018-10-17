@@ -8,7 +8,10 @@ require_once("../bd/API-debat.php");
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
 
-if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) header('Location: index.php');
+if (isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"])) {
+  header('Location: ../control/deconnexion.php');
+  die();
+}
 
 if ($_POST["action"] == "ON"){ // On suit un débat
   newSuivi($database,$_SESSION["pseudo"],$_POST["debat"]);
@@ -18,4 +21,5 @@ if ($_POST["action"] == "ON"){ // On suit un débat
 }
 
 header("Location: ../pages/pageDebat.php?categorie={$_POST["categorie"]}&debat={$_POST["debat"]}");
+die();
  ?>

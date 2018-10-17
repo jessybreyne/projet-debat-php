@@ -2,7 +2,10 @@
 
 if (!session_id()) @ session_start();
 
-if (isset($_SESSION["pseudo"])) header('Location: accueil.php');
+if (isset($_SESSION["pseudo"])){
+  header('Location: accueil.php');
+  die();
+}
 
 
 // ON SAUVEGARDE LES MESSAGES DANS SESSION PUIS ON LA SUPPRIME

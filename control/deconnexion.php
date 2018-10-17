@@ -5,5 +5,5 @@ if (isset($_SESSION["pseudo"])) {
 }
 
 header('Location: ../pages/index.php');
-
+die();
  ?>

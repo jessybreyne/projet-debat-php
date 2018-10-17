@@ -26,4 +26,5 @@ $etat = array("ON" => "ouvert" , "OFF" => "fermé");
 $_SESSION["change"] = "Le site a bien été {$etat[$_POST["maintenance"]]} aux utilisateurs non-admin !";
 
 header('Location: ../pages/preferences.php');
+die();
 ?>
