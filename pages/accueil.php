@@ -1,7 +1,7 @@
 <?php
 if (!session_id()) @ session_start();
 
-if (!isset($_SESSION["pseudo"])) header('Location: index.php');
+require_once 'menu.php';
 
 if (isset($_SESSION["erreur"])) unset($_SESSION["erreur"]);
 
@@ -22,8 +22,6 @@ if (isset($_SESSION["successIns"])){
   unset($_SESSION["erreurDebat"]);
 }
 
-if (!isset($_SESSION["pseudo"])) header('Location: index.php');
-
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
 
@@ -37,7 +35,6 @@ if (!peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) {
    header('Location: index.php');
 }
 
-require_once 'menu.php';
 
 ?>
 
