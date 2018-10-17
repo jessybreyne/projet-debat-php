@@ -1,5 +1,5 @@
 <?php
-if ( ! session_id() ) @ session_start();
+if ( !session_id() ) @ session_start();
 $_SESSION["erreur"] = "";
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
