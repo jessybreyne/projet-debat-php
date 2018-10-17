@@ -72,6 +72,7 @@ $database = launchPDO("../bd/data");
           echo "Créateur : ".$infosCreateur["pseudo"];
           echo " | Dernière activité : ";
           print_r(derniereActivite($database,$debat["titre"]));
+          echo " | Nombre de suivis : ".nbSuivis($database,$debat["titre"]);
 
            ?>
         </p>

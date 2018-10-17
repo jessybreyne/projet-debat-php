@@ -246,6 +246,17 @@ function newDebat($database,$pseudo,$nomCateg,$titreDeb){
   newSuivi($database,$pseudo,$titreDeb);
 }
 
+// Savoir le nombre d'utilisateurs qui suivent un débat
+function nbSuivis($database,$titreDeb){
+  $lesDeb = "SELECT count(*) as nbSuivis FROM SUIVRE where idDebat=:idDebat";
+  $stmt = $database->prepare($lesDeb);
+  $debatID = getDebatID($database,$titreDeb);
+  $stmt->bindParam(':idDebat',$debatID);
+  $stmt->execute();
+
+  return $stmt->fetch()["nbSuivis"];
+}
+
 // Récupérer les données pour la page "Mes débats" (idDebat, catégorie, titre, idCreateur)
 // concernant un User dont on connaît le pseudo
 // (les débats qu'il a créés ou qu'il suit)
@@ -311,7 +322,7 @@ function afficheDebats($database,$listeDebats){
           echo "Créateur : ".$infosCreateur["pseudo"];
           echo " | Dernière activité : ";
           print_r(derniereActivite($database,$debat["titre"]));
-
+          echo " | Nombre de suivis : ".nbSuivis($database,$debat["titre"]);
           ?>
         </p>
       </div>
