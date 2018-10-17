@@ -1,17 +1,20 @@
 <?php
 if (!session_id()) @ session_start();
 
-if (!isset($_SESSION["pseudo"])) header('Location: ../pages/index.php');
-
-$_POST["reponse"] = htmlspecialchars($_POST["reponse"]);
-
-# FORMULAIRE OK
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
 
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
+
+if (!isset($_SESSION["pseudo"]) AND !peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) header('Location: index.php');
+
+
+$_POST["reponse"] = htmlspecialchars($_POST["reponse"]);
+
+# FORMULAIRE OK
+
 
 if (isset($_POST["titreDeb"])) {
   $_POST["titreDeb"] = htmlspecialchars($_POST["titreDeb"]);

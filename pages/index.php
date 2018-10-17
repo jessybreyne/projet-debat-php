@@ -1,6 +1,7 @@
 <?php
 if (isset($_SESSION)) session_destroy();
 if (!session_id()) @ session_start();
+
 if (isset($_SESSION["pseudo"])) unset($_SESSION["pseudo"]);
 
 

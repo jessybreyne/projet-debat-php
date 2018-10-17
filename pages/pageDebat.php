@@ -2,7 +2,8 @@
 
 if (!session_id()) @ session_start();
 
-if (!isset($_SESSION["pseudo"])) header('Location: index.php');
+include 'menu.php';
+
 
 // IMPORTATION DES FONCTIONS DE L'API PHP-BD
 require_once("../bd/API-debat.php");
@@ -39,10 +40,8 @@ if (isset($_SESSION["successReponse"])) {
 } elseif (isset($_SESSION["erreurReponse"])) {
   $msgError = $_SESSION["erreurReponse"];
   unset($_SESSION["erreurReponse"]);
-  echo $msgError;
 }
 
-include 'menu.php';
 ?>
 
 <!doctype html>
