@@ -1,5 +1,4 @@
 <?php
-if (!session_id()) @ session_start();
 
 require_once 'menu.php';
 
@@ -27,13 +26,6 @@ require_once("../bd/API-debat.php");
 
 // Démarrer la connexion
 $database = launchPDO("../bd/data");
-
-// SI LE SITE EST FERMÉ AUX NON-ADMIN
-// L'activation de la fermeture se trouve au début du fichier index.php
-if (!peutContinuer($database,$_SESSION["pseudo"],$_SESSION["SystemeOuvert"])) {
-  $_SESSION["erreur"] = "Le site est actuellement ouvert aux administrateurs seulement. Revenez plus tard !";
-   header('Location: index.php');
-}
 
 
 ?>
