@@ -54,4 +54,9 @@ echo "<br><br><br><br>TEST recherches<br>Je cherche un débat avec le mot 'dange
 print_r(listeDebatsString($database,"danger"));
 echo "<br>";
 
+echo "<br><br><br><br>TEST nbSuivis <br>";
+echo nbSuivis($database,"L'IA, un danger pour l'Homme ?")." suivent le débat 'L'IA, un danger pour l'Homme ?'";
+echo "<br>";
+
+
  ?>
